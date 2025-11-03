@@ -153,6 +153,7 @@ header {
         text-align: center;
         font-size:2vw;
         padding-top:1vh;
+        font-family: sans-serif;
     }
 
 @media screen and (max-width: 800px) and (orientation: portrait){
@@ -160,13 +161,14 @@ header {
         display:none;
     }
     .main-wrapper {
-        margin: 10vh 10vw 0 10vw;
+        margin: 10vh 10vw 10vh 10vw;
         width:80vw;
     }
     .weeklyNotice {
         position: relative;
         margin-left:10vw;
         width: 80vw;
+        margin-bottom:10vh;
     }
     .event-calender h1 {
         font-size:5vw;
