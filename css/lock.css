@@ -1,0 +1,60 @@
+#loginArea {
+    position:fixed;
+    top:30vh;
+    left:20vw;
+    width:60vw;
+    height:40vh;
+    background: linear-gradient(to right, rgba(223, 83, 64,0.5), rgba(133, 15, 0, 0.5));
+    box-shadow: 0 8px 16px rgba(80, 9, 0, 0.5);
+    color:white;
+    border-radius: 25px 25px 25px 25px;
+}
+.login-img {
+    width:5vw;
+
+}
+#loginArea p {
+    font-size:3vw;
+    text-align: center;
+    margin-top:0;
+    margin-bottom:5vh;
+}
+#login {
+    position: relative;
+    left:25%;
+    width:30vw;
+    height:12vh;
+    font-size: 3vw;
+    box-shadow: 0 8px 16px black;
+    border-radius:25px 25px 25px 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* ← 普通時にもtransition */
+}
+#login:hover {
+    box-shadow: 0 12px 24px black;
+    transform: scale(1.02); /* ← ほんの少し拡大 */
+}
+
+
+@media screen and (max-width: 800px) and (orientation: portrait){
+#loginArea {
+    position:fixed;
+    top:35vh;
+    left:10vw;
+    width:80vw;
+    height:30vh;
+    background: linear-gradient(to right, rgba(223, 83, 64,0.5), rgba(133, 15, 0, 0.5));
+    box-shadow: 0 8px 16px rgba(80, 9, 0, 0.5);
+    color:white;
+    border-radius: 25px 25px 25px 25px;
+}
+    #loginArea p {
+        font-size:5vw;
+    }
+    #login {
+        font-size:4vw;
+
+        left:25%;
+        width:40vw;
+        height:12vh;
+    }
+}

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>ブラウザTTSデモ</title>
+</head>
+<body>
+  <h3>ブラウザ組み込み TTS デモ</h3>
+
+  <textarea id="text" cols="60" rows="6">こんにちは。ブラウザの SpeechSynthesis で読み上げます。</textarea><br>
+  <select id="voiceSelect"></select>
+  <label>言語: <input id="lang" value="ja-JP"></label>
+  <label>速度: <input id="rate" type="range" min="0.5" max="2" step="0.1" value="1"></label>
+  <label>高さ: <input id="pitch" type="range" min="0" max="2" step="0.1" value="1"></label><br><br>
+
+  <button id="speak">読み上げ</button>
+  <button id="cancel">停止</button>
+
+  <script>
+    const synth = window.speechSynthesis;
+    const voiceSelect = document.getElementById('voiceSelect');
+    const langInput = document.getElementById('lang');
+    let voices = [];
+
+    function populateVoices() {
+      voices = synth.getVoices();
+      voiceSelect.innerHTML = '';
+      voices.forEach((v, i) => {
+        const opt = document.createElement('option');
+        opt.value = i;
+        opt.textContent = `${v.name} (${v.lang})${v.default ? ' — default' : ''}`;
+        voiceSelect.appendChild(opt);
+      });
+    }
+
+    // Some browsers load voices asynchronously
+    populateVoices();
+    if (speechSynthesis.onvoiceschanged !== undefined) {
+      speechSynthesis.onvoiceschanged = populateVoices;
+    }
+
+    document.getElementById('speak').addEventListener('click', () => {
+      const text = document.getElementById('text').value.trim();
+      if (!text) return;
+      const utter = new SpeechSynthesisUtterance(text);
+
+      const selectedVoice = voices[voiceSelect.value];
+      if (selectedVoice) utter.voice = selectedVoice;
+      utter.lang = langInput.value || utter.lang;
+      utter.rate = parseFloat(document.getElementById('rate').value);
+      utter.pitch = parseFloat(document.getElementById('pitch').value);
+
+      utter.onstart = () => console.log('start');
+      utter.onend = () => console.log('end');
+      utter.onerror = (e) => console.error('tts error', e);
+
+      synth.cancel(); // 前のが残ってたら止める
+      synth.speak(utter);
+    });
+
+    document.getElementById('cancel').addEventListener('click', () => {
+      synth.cancel();
+    });
+  </script>
+</body>
+</html>

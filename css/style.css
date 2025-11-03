@@ -1,0 +1,137 @@
+.bg-video {
+            position: fixed;    /* 画面に張り付ける */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;  /* 画面いっぱいに切り抜き */
+            z-index: -2;        /* 後ろに回す */
+}
+
+header {
+    position:fixed;
+    top: 0;
+    left: 0;
+    width:100vw;
+    height:6vh;
+    background:linear-gradient(to right,#930311,#d3626e);
+    z-index: 100;
+}
+.header-title-logo img {
+    width:6vh;
+    top: 0;
+    left:0vw;    
+}
+    header nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        text-decoration: none;
+        font-size: 1.5vw;
+        z-index: 100;
+     }
+    .navList {
+        list-style: none;
+        padding: 10px 20px;
+        margin: 0;
+        margin-right:3vw;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        color: rgb(248, 246, 246);
+        text-decoration: none;
+    }
+    .navList li {
+        margin: 0 15px;
+    }
+    .navList li a {
+        color: #0c0c0c;
+        text-shadow: 0 4px 8px rgb(255, 74, 3);
+        text-decoration: none;
+        font-weight: bold;
+    } 
+    .navList li a:hover {
+        color: rgb(0, 0, 0);
+        text-shadow: 0 2px 6px rgb(255, 255, 255);
+        transition: text-shadow 0.2s ease-in-out;
+    }
+    .navList li button {
+        color: #0c0c0c;
+        text-shadow: 0 4px 8px rgb(255, 74, 3);
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1vw;
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px 10px 10px 10px;
+    } 
+    .navList li button:hover {
+        color: rgb(0, 0, 0);
+        text-shadow: 0 2px 6px rgb(255, 255, 255);
+        transition: text-shadow 0.2s ease-in-out;
+    }
+    .navWrap {
+        display: flex;
+        position: relative;
+    }
+
+         .hamburger {
+        flex-direction: column;
+        justify-content: space-between;
+        width: 40px;
+        height: 5vh;
+        cursor: pointer;
+        position: absolute;  /* 親（navWrap）に対して絶対配置 */
+        top: 10px;           /* 上から15px */
+        right: 20px;         /* 右から20px */
+        z-index: 200;        /* メニューより前面に出す */
+        }
+        .hamburger span {
+        display: block;
+        height: 3px;
+        background: #333;
+        border-radius: 2px;
+        transition: 0.3s ease;
+        margin-bottom:1vh;
+        }       
+           .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            .hamburger.active span:nth-child(2) {
+                opacity: 0; /* 真ん中の線を消す */
+            }
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+    .main-wrapper {
+        margin: 10vh 10vw 0 10vw;
+        width: 38vw;
+    }
+    
+    .weeklyNotice {
+        position:relative;
+        box-shadow:0 8px 16px gray;
+        border-radius: 25px 25px 25px 25px;
+        height:85vh;
+        background:#930311;
+    }
+    .weeklyNotice iframe {
+        border-radius: 25px 25px 25px 25px;      
+    }
+    .weeklyNotice h1 {
+        color:white;
+        text-align: center;
+        font-size:2vw;
+        padding-top:1vh;
+    }
+
+@media screen and (max-width: 800px){
+    .navList {
+        display:none;
+    }
+    .main-wrapper {
+        margin: 10vh 10vw 0 10vw;
+        width:80vw;
+    }
+}
