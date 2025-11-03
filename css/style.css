@@ -178,18 +178,19 @@ header {
         font-size:5vw;
     }
     footer {
-        display: block;
+        display: flex;
         position:fixed;
         bottom:0;
         width:100vw;
-        height:5vh;
+        height:9vh;
         z-index: 100;
+        background: white;
     }
     footer img {
         position:relative;
         top:0.5vh;
         width:16vw;
-        height:4vh;
+        height:7vh;
         margin-left:1vw;
         margin-right:1vw;
     }
