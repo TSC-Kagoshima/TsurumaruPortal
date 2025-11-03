@@ -181,6 +181,7 @@ header {
         display: flex;
         position:fixed;
         bottom:0;
+        left: 0;
         width:100vw;
         height:9vh;
         z-index: 100;
@@ -189,9 +190,9 @@ header {
     footer img {
         position:relative;
         top:0.5vh;
-        width:16vw;
+        width:15vw;
         height:7vh;
-        margin-left:1vw;
-        margin-right:1vw;
+        margin-left:2vw;
+        margin-right:2vw;
     }
 }
