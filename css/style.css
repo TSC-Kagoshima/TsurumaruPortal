@@ -156,6 +156,10 @@ header {
         font-family: sans-serif;
     }
 
+    footer {
+        display: none;
+    }
+
 @media screen and (max-width: 800px) and (orientation: portrait){
     .navList {
         display:none;
@@ -172,5 +176,21 @@ header {
     }
     .event-calender h1 {
         font-size:5vw;
+    }
+    footer {
+        display: block;
+        position:fixed;
+        bottom:0;
+        width:100vw;
+        height:5vh;
+        z-index: 100;
+    }
+    footer img {
+        position:relative;
+        top:0.5vh;
+        width:16vw;
+        height:4vh;
+        margin-left:1vw;
+        margin-right:1vw;
     }
 }
