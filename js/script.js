@@ -7,6 +7,7 @@
             hamburger.addEventListener('click', function() {
                 hamburger.classList.toggle('active'); // ×アニメーション
                 navList.classList.toggle('show');     // メニュー表示
+                alert('現在メニューはご利用できません。ご迷惑をおかけします。')
             });
 
             // li a をクリックしたらメニュー閉じる
