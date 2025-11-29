@@ -215,6 +215,6 @@ function  newConduction() {
   })
 }
 function completeSend() {
-  alert("作成が完了しました。リダイレクトします...");
-  window.location.href = "/index.html";
+  alert("作成が完了しました。OKを押すことでリダイレクトします...");
+  window.location.href = "/seitokai/classmatch/index.html";
 }
