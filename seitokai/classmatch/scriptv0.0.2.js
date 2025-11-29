@@ -217,14 +217,13 @@ function  newConduction() {
   })
 }
 
-
 fetch(url + "?type=getTerms")
   .then(res => res.json())
-  .then(getTerms => {
+  .then(getTerms => {  // ここは GAS からの配列
     const selects = document.querySelectorAll(".termSelect"); // NodeList
 
-    selects.forEach(getTerms => {
-      getTerms.forEach(name => {
+    selects.forEach(select => {  // 各 <select> 要素に対して
+      getTerms.forEach(name => {  // 配列をループ
         const option = document.createElement("option");
         option.value = name;
         option.textContent = name;
@@ -233,3 +232,4 @@ fetch(url + "?type=getTerms")
     });
   })
   .catch(err => console.error(err));
+
