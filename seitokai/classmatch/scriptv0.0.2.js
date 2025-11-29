@@ -248,6 +248,6 @@ function setupButton(btnId, selectId,html) {//////////////////////システム�
 }
 
 // ここでボタンIDとselectIDを渡す
-setupButton('select-term-submit-btn-system', 'conduct-term', "seitokai/classmatch/manage/index.html"); 
-setupButton('select-term-submit-btn-result', 'result-term',"seitokai/classmatch/result/index.html");
-setupButton('select-term-submit-btn-announce', 'announce-term',"seitokai/classmatch/result/announce.html");
+setupButton('select-term-submit-btn-system', 'manage/index.html'); 
+setupButton('select-term-submit-btn-result', 'result/index.html');
+setupButton('select-term-submit-btn-announce', 'result/announce.html');
