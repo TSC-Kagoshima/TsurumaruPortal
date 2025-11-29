@@ -238,7 +238,7 @@ function setupButton(btnId, selectId,html) {//////////////////////システム�
   const select = document.getElementById(selectId);
 
   btn.addEventListener('click', () => {
-    const url = "seitokai/classmatch/" + html + "?view=" + select.value; // 選択されている option の値
+    const url = "/" + html + "?view=" + select.value; // 選択されている option の値
     if (url) {
       window.open(url, '_blank'); // 新しいタブで開く
     } else {
