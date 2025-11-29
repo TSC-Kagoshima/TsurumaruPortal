@@ -217,14 +217,13 @@ function  newConduction() {
   })
 }
 
-; // WebApp URL
 
 fetch(url + "?type=Terms")
   .then(res => res.json())
-  .then(sheetNames => {
-    const select = document.getElementById("termSelect");
+  .then(getTerms => {
+    const select = document.querySelectorALl(".termSelect");
 
-    sheetNames.forEach(name => {
+    getTerms.forEach(name => {
       const option = document.createElement("option");
       option.value = name;
       option.textContent = name;
