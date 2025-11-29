@@ -238,7 +238,7 @@ function setupButton(btnId, selectId,html) {//////////////////////システム�
   const select = document.getElementById(selectId);
 
   btn.addEventListener('click', () => {
-    const url = "seitokai/classmatch/" + html + "?view=" + select.value; // 選択されている option の値
+    const url = html + "?view=" + select.value; // 選択されている option の値
     if (url) {
       window.open(url, '_blank'); // 新しいタブで開く
     } else {
@@ -248,6 +248,6 @@ function setupButton(btnId, selectId,html) {//////////////////////システム�
 }
 
 // ここでボタンIDとselectIDを渡す
-setupButton('select-term-submit-btn-system', 'conduct-term', "manage/index.html"); 
-setupButton('select-term-submit-btn-result', 'result-term',"result/index.html");
-setupButton('select-term-submit-btn-announce', 'announce-term',"result/announce.html");
+setupButton('select-term-submit-btn-system', 'conduct-term', "seitokai/classmatch/manage/index.html"); 
+setupButton('select-term-submit-btn-result', 'result-term',"seitokai/classmatch/result/index.html");
+setupButton('select-term-submit-btn-announce', 'announce-term',"seitokai/classmatch/result/announce.html");
