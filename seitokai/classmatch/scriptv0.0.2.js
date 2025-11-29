@@ -248,6 +248,6 @@ function setupButton(btnId, selectId,html) {//////////////////////システム�
 }
 
 // ここでボタンIDとselectIDを渡す
-setupButton('select-term-submit-btn-system', 'conduct-term', "manage"); 
-setupButton('select-term-submit-btn-result', 'result-term',"result");
+setupButton('select-term-submit-btn-system', 'conduct-term', "manage/index.html"); 
+setupButton('select-term-submit-btn-result', 'result-term',"result/index.html");
 setupButton('select-term-submit-btn-result', 'announce-term',"result/announce.html");
