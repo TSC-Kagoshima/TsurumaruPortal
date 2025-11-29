@@ -223,7 +223,7 @@ fetch(url + "?type=getTerms")
   .then(getTerms => {
     const selects = document.querySelectorAll(".termSelect"); // NodeList
 
-    selects.forEach(select => {
+    selects.forEach(getTerms => {
       getTerms.forEach(name => {
         const option = document.createElement("option");
         option.value = name;
