@@ -179,13 +179,17 @@ header {
     }
     footer {
         display: flex;
-        position:fixed;
-        bottom:0;
-        left: 0;
-        width:100vw;
-        height:9vh;
+        position: fixed;
+        bottom: 0;
+        left: 2.5vw;
+        width: 95vw;
+        height: 9vh;
         z-index: 100;
-        background: white;
+        background: #ffffffa1;
+        border-radius: 4.5vh;
+        backdrop-filter: blur(5px);
+        /* backdrop-filter: grayscale(0); */
+        border: white 1px solid;
     }
     footer img {
         position:relative;
