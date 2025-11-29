@@ -218,10 +218,7 @@ function  newConduction() {
 }
 
 
-fetch(url + "?type=getTerms", {
-  method: "GET",
-  mode: "cors"
-})
+fetch(url + "?type=getTerms")
   .then(res => res.json())
   .then(getTerms => {
     const selects = document.querySelectorAll(".termSelect"); // NodeList
