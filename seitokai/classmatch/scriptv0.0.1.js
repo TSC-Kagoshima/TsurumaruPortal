@@ -218,7 +218,7 @@ function  newConduction() {
 }
 
 
-fetch(url + "?type=Terms")
+fetch(url + "?type=getTerms")
   .then(res => res.json())
   .then(getTerms => {
     const select = document.querySelectorALl(".termSelect");
