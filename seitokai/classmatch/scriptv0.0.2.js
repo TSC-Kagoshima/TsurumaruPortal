@@ -1,4 +1,4 @@
-function viewCreate() {
+function viewCreate() {////////新規作成セクションに作成項目を表示
     const view= document.getElementById('view-create');
     const button = document.getElementById('create-initial-button');
     const header = document.querySelector('.create-header');
@@ -131,7 +131,7 @@ document.querySelectorAll('.create-league').forEach(button => {
       button.insertAdjacentElement('beforebegin', league);
   });
 });
-document.addEventListener('click', e => {
+document.addEventListener('click', e => {//////////リーグとチームの追加
   if (e.target.classList.contains('create-team')) {
     // ボタン自身に figure プロパティを作る
     if (!e.target.figure) e.target.figure = 3; // 初回は3
@@ -169,7 +169,7 @@ document.addEventListener('click', e => {
 });
 const url = "https://fetch.tsurumarubroadcast.workers.dev/";
 
-function  newConduction() {
+function  newConduction() {//////////////////システム新規作成
   const year = document.getElementById('conduct-year').value;
   const term = document.getElementById('conduct-school-term').value;
    const data = {
@@ -217,7 +217,7 @@ function  newConduction() {
   })
 }
 
-fetch(url + "?type=getTerms")
+fetch(url + "?type=getTerms")/////////////////実施年・学期を取得(めっちゃ時間かかったから壊れたらなく)
   .then(res => res.json())
   .then(getTerms => {  // ここは GAS からの配列
     const selects = document.querySelectorAll(".termSelect"); // NodeList
@@ -233,3 +233,21 @@ fetch(url + "?type=getTerms")
   })
   .catch(err => console.error(err));
 
+function setupButton(btnId, selectId,html) {//////////////////////システムを開く
+  const btn = document.getElementById(btnId);
+  const select = document.getElementById(selectId);
+
+  btn.addEventListener('click', () => {
+    const url = "seitokai/classmatch/" + html + "?view=" + select.value; // 選択されている option の値
+    if (url) {
+      window.open(url, '_blank'); // 新しいタブで開く
+    } else {
+      alert("サイトを選択してください");
+    }
+  });
+}
+
+// ここでボタンIDとselectIDを渡す
+setupButton('select-term-submit-btn-system', 'conduct-term', "manage"); 
+setupButton('select-term-submit-btn-result', 'result-term',"result");
+setupButton('select-term-submit-btn-result', 'announce-term',"result/announce.html");
