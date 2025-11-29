@@ -168,7 +168,7 @@ document.addEventListener('click', e => {
   }
 });
 
-function newConduction() {
+function  newConduction() {
   const year = document.getElementById('conduct-year').value;
   const term = document.getElementById('conduct-school-term').value;
    const data = {
@@ -207,6 +207,7 @@ function newConduction() {
     // ここで fetch などで GAS 関数に POST
   fetch('https://script.google.com/macros/s/AKfycbw6R0s6U2_78YJEAU3NJWpiMfgNu7MAFv-i1y28hhEA2SiDAH-tch6gB8d0K7RBAfmWUg/exec', {
     method: 'POST',
+    mode  : "no-cors",
     body: JSON.stringify(data),
     headers: { 'Content-Type': 'application/json' }
   }).then(res => res.json())
