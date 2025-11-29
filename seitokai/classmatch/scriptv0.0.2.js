@@ -218,19 +218,21 @@ function  newConduction() {
 }
 
 
-fetch(url + "?type=getTerms" {
+fetch(url + "?type=getTerms", {
   method: "GET",
   mode: "cors"
 })
   .then(res => res.json())
   .then(getTerms => {
-    const select = document.querySelectorALl(".termSelect");
+    const selects = document.querySelectorAll(".termSelect"); // NodeList
 
-    getTerms.forEach(name => {
-      const option = document.createElement("option");
-      option.value = name;
-      option.textContent = name;
-      select.appendChild(option);
+    selects.forEach(select => {
+      getTerms.forEach(name => {
+        const option = document.createElement("option");
+        option.value = name;
+        option.textContent = name;
+        select.appendChild(option);
+      });
     });
   })
   .catch(err => console.error(err));
