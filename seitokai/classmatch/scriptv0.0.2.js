@@ -167,7 +167,7 @@ document.addEventListener('click', e => {
      e.target.remove(); 
   }
 });
-const url = "https://script.google.com/macros/s/AKfycbw6R0s6U2_78YJEAU3NJWpiMfgNu7MAFv-i1y28hhEA2SiDAH-tch6gB8d0K7RBAfmWUg/exec";
+const url = "https://fetch.tsurumarubroadcast.workers.dev/";
 
 function  newConduction() {
   const year = document.getElementById('conduct-year').value;
