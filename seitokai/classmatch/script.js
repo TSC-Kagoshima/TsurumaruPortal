@@ -168,42 +168,47 @@ document.addEventListener('click', e => {
   }
 });
 
-function registerResult(data) {
-    const game = data.game;
-  const type = data.type;
-  const r1 = data.r1;
-  const point1 = data.point1;
-  const r2 = data.r2;
-  const point2 = data.point2;
-     var spreadsheet = SpreadsheetApp.openById("14_Thli7e_UrahwSfx2I3oTrp0XFlUh_51SaC6Kr2bHQ");
-  var sheet = spreadsheet.getSheetByName("R7前期試合結果"); 
-  var lastRow = sheet.getLastRow();
-  var data = sheet.getRange("A1:A" + lastRow).getValues();
-    const lastCol = sheet.getLastColumn();
-  var nextRow = lastRow + 1; // 初期値は最終行の次の行
-  for (var i = 0; i < data.length; i++) {
-    if (!data[i][0]) { // A列が空なら、その行を使用
-      nextRow = i + 1;
-      break;
-    }
-  }
-  // **A～C列に `content` の値を入力**
-  sheet.getRange(nextRow, 1, 1, 6).setValues([[game,r1,point1,type,r2,point2,]]);
-  sheet.getRange(nextRow, 8, 1, 1).setValue(new Date());
+function newConduction() {
+  const year = document.getElementById('conduct-year').value;
+  const term = document.getElementById('conduct-school-term').value;
+   const data = {
+    year: year,
+    term: term,
+    games: [] // 競技ごとの配列
+  };
+    // 各競技ごとの p.game-type をループ
+  document.querySelectorAll('#view-create .game-type').forEach(p => {
+    const gameName = p.textContent;
+    const leagues = [];
 
-  try {
-        // 書き込み後に lastRow を更新
-    lastRow = sheet.getLastRow();
-    // 2行目以降、すべての列を対象に取得
-    const range = sheet.getRange(2, 1, lastRow - 1, lastCol);
-    // G列（7列目）を基準に、行全体を降順ソート
-    range.sort({ column: 7, ascending: false });
-  } catch (e) {
-    Logger.log("エラー: " + e.message);
-  }
- 
-     const range = sheet.getRange(2, 1, lastRow - 1, lastCol);
-    // H列（8列目）を基準に、行全体を降順ソート
-    range.sort({ column: 8, ascending: false });
-  return "登録が完了しました";
+    // 競技ごとの直後のリーグを取得
+    let next = p.nextElementSibling;
+    while (next && next.classList.contains('league-field')) {
+      const leagueElem = next.querySelector('.league-name');
+      const leagueName = leagueElem ? leagueElem.textContent : '';
+      const teams = [];
+      next.querySelectorAll('.league-team').forEach(sel => {
+        teams.push(sel.value); // 選択されているチーム
+      });
+      leagues.push({
+        leagueName,
+        teams
+      });
+      next = next.nextElementSibling;
+    }
+
+    data.games.push({
+      gameName,
+      leagues
+    });
+  });
+
+  console.log(data); // GAS に送る前に確認
+    // ここで fetch などで GAS 関数に POST
+  fetch('https://script.google.com/macros/s/AKfycbw6R0s6U2_78YJEAU3NJWpiMfgNu7MAFv-i1y28hhEA2SiDAH-tch6gB8d0K7RBAfmWUg/exec', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: { 'Content-Type': 'application/json' }
+  }).then(res => res.json())
+    .then(res => console.log(res));
 }
