@@ -209,7 +209,12 @@ function  newConduction() {
     method: 'POST',
     mode  : "no-cors",
     body: JSON.stringify(data),
-    headers: { 'Content-Type': 'application/json' }
-  }).then(res => res.json())
-    .then(res => console.log(res));
+    headers: { "Content-Type": "application/json" }
+  }).then(() => {
+    completeSend();
+  })
+}
+function completeSend() {
+  alert("作成が完了しました。リダイレクトします...");
+  window.location.href = "/index.html";
 }
