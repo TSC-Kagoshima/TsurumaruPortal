@@ -167,6 +167,7 @@ document.addEventListener('click', e => {
      e.target.remove(); 
   }
 });
+const url = "https://script.google.com/macros/s/AKfycbw6R0s6U2_78YJEAU3NJWpiMfgNu7MAFv-i1y28hhEA2SiDAH-tch6gB8d0K7RBAfmWUg/exec";
 
 function  newConduction() {
   const year = document.getElementById('conduct-year').value;
@@ -205,16 +206,29 @@ function  newConduction() {
 
   console.log(data); // GAS に送る前に確認
     // ここで fetch などで GAS 関数に POST
-  fetch('https://script.google.com/macros/s/AKfycbw6R0s6U2_78YJEAU3NJWpiMfgNu7MAFv-i1y28hhEA2SiDAH-tch6gB8d0K7RBAfmWUg/exec', {
+  fetch(url, {
     method: 'POST',
     mode  : "no-cors",
     body: JSON.stringify(data),
     headers: { "Content-Type": "application/json" }
   }).then(() => {
-    completeSend();
+    alert("作成が完了しました。OKを押すことでリダイレクトします...");
+    window.location.href = "/seitokai/classmatch/index.html";
   })
 }
-function completeSend() {
-  alert("作成が完了しました。OKを押すことでリダイレクトします...");
-  window.location.href = "/seitokai/classmatch/index.html";
-}
+
+; // WebApp URL
+
+fetch(url + "?type=Terms")
+  .then(res => res.json())
+  .then(sheetNames => {
+    const select = document.getElementById("termSelect");
+
+    sheetNames.forEach(name => {
+      const option = document.createElement("option");
+      option.value = name;
+      option.textContent = name;
+      select.appendChild(option);
+    });
+  })
+  .catch(err => console.error(err));
