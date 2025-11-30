@@ -1,0 +1,129 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.bg-video {
+   position: fixed;    /* 画面に張り付ける */
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   object-fit: cover;  /* 画面いっぱいに切り抜き */
+   z-index: -2;        /* 後ろに回す */
+}
+
+.radius {
+   border-radius: 25px;
+}
+
+.filter {
+   background:rgba(255, 255, 255, 0.3);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.37);
+   border: 1px solid white;
+   transition: transform 0.3s ease-in-out ,box-shadow 0.3s ease-in-out;
+}
+.filter:hover {
+   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.37);
+   transform: scale(1.02);
+   transition: transform 0.3s ease-in-out ,box-shadow 0.3s ease-in-out;
+}
+
+/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+
+.header {
+   /* 位置・サイズ */
+   position:fixed;
+   width: 100vw;
+   height: 6vh;
+   background: rgba(255, 255, 255, 0.6);
+}
+
+.header .header-title {
+   font-family: "Sawarabi Gothic", sans-serif;
+   font-weight: 400;
+   font-size:1.5vw;
+   text-align: center;
+
+   transform: translate(0, -50%);
+   margin-top:3vh;
+}
+
+.popup-select-game {
+    position:fixed;
+    width:90vw;
+    height:85vh;
+    margin:10vh 5vw 5vh 5vw;
+    background-color: white;
+    z-index: 100;
+}
+.popup-select-game p {
+   text-align: center;
+   font-size:1.5vw;
+   margin-top:12vh;
+}
+.popup-select-game h1 {
+    text-align: center;
+    margin-top:3vh;
+    
+}
+.popup-select-game select {
+    position:absolute;
+    left:20%;
+    width:60%;
+    height:15%;
+    font-size:1.5vw;
+
+    margin-top:5vh;
+    padding:1vh 0 1vh 0;
+    background:oklch(0.99 0.07393 145.034);
+}
+.popup-select-game input {
+   position:absolute;
+   left: 20%;
+   width: 40%;
+   height:15%;
+   margin-top: 20vh;
+
+   font-size: 1.5vw;
+   background:oklch(0.99 0.07 8.704);
+}
+.popup-select-game button {
+   position:absolute;
+   right:20%;
+   width:15%;
+   height:15%;
+   margin-top:20vh;
+   font-size:2.5vw;
+   font-weight: 600;
+   color:white;
+
+
+   background: oklch(0.6 0.31003 266.137);
+}
+
+.box {
+   /* 位置・サイズ */
+   position:fixed;
+   width: 40vw;
+   margin: 10vh 0 10vh 0;
+}
+.result-wrapper {
+    height:40vh;
+    top: 0;
+    margin-left: 5vw;
+}
+.sendcommunication {
+    height:40vh;
+    top:45vh;
+    margin-left: 5vw;
+}
+.communication-wrapper {
+    width:45vw;
+    height:85vh;
+    right:0;
+    margin-right:5vw;
+}

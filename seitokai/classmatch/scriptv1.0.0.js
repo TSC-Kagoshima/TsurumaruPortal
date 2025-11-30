@@ -214,9 +214,9 @@ function  newConduction() {//////////////////システム新規作成
     alert("作成が完了しました。OKを押すことでリダイレクトします...");
     window.location.href = "/seitokai/classmatch/index.html";
   })
-}
+ }
 
-fetch(url + "?type=getTerms")/////////////////実施年・学期を取得(めっちゃ時間かかったから壊れたらなく)
+ fetch(url + "?type=getTerms")/////////////////実施年・学期を取得(めっちゃ時間かかったから壊れたらなく)
   .then(res => res.json())
   .then(getTerms => {  // ここは GAS からの配列
     const selects = document.querySelectorAll(".termSelect"); // NodeList
@@ -237,7 +237,7 @@ function setupButton(btnId, selectId,html) {//////////////////////システム�
   const select = document.getElementById(selectId);
 
   btn.addEventListener('click', () => {
-    const url = html + "?view=" + select.value; // 選択されている option の値
+    const url = html + "?term=" + select.value; // 選択されている option の値
     if (url) {
       window.open(url, '_blank'); // 新しいタブで開く
     } else {
