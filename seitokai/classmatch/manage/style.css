@@ -52,6 +52,8 @@ body {
    margin-top:3vh;
 }
 
+/*　　　　　　　　　　　　　　　 ログインポップアップ　　　　　　　　　　　　　　　 */
+
 .popup-select-game {
     position:fixed;
     width:90vw;
@@ -59,7 +61,6 @@ body {
     margin:10vh 5vw 5vh 5vw;
     background-color: white;
     z-index: 100;
-    display: none;
 }
 .popup-select-game.success {
    display: none;
@@ -108,6 +109,7 @@ body {
 
    background: oklch(0.6 0.31003 266.137);
 }
+/*　　　　　　　　　　　　　　　 アウトラインボックス　　　　　　　　　　　　　　　 */
 
 .box {
    /* 位置・サイズ */
