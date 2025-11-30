@@ -1,8 +1,21 @@
 function login() {
-    const part = document.getElementById('game-branch');
-    const password = document.getElementById('password');
-    const set = [part, password]
+    const part = document.getElementById('game-branch').value;
+    const password = document.getElementById('password').value;
+    const set = [part, password];
     ////あとはfetchでgasへ
+    const params = new URLSearchParams(window.location.search);
+    const value = params.get('term'); 
+    const popup = document.querySelector('.popup-select-game');
+    if(value == "テスト用") {
+        if(part === "tbc-tech" && password === "1234") {
+            popup.classList.add('success');
+            alert('認証が完了しました');
+        } else {
+            alert('パスワードが違います');
+        }
+    } else {
+        alert('現在メンテナンス中です。');
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
