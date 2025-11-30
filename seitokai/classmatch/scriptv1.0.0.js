@@ -206,9 +206,8 @@ function  newConduction() {//////////////////システム新規作成
 
   console.log(data); // GAS に送る前に確認
     // ここで fetch などで GAS 関数に POST
-  fetch(url, {
+  fetch(url + "?type=newConduction", {
     method: 'POST',
-    mode  : "no-cors",
     body: JSON.stringify(data),
     headers: { "Content-Type": "application/json" }
   }).then(() => {
