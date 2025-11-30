@@ -11,7 +11,7 @@ const value = params.get('term');
     if (value !== null) { // term パラメータが存在する場合だけ
         const termInput = document.getElementById('conduct-term');
         if (termInput) {
-            termInput.value = value; // input の値にセット
+            termInput.textContent  = value; // input の値にセット
         }
     }
 })
