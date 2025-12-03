@@ -24,7 +24,7 @@ function login() {
 }
 function logout() {
    localStorage.clear('branch');
-   window.location.href = "seitokai/classmatch/";
+   window.location.href = "";
    ///////絶対誤操作でログアウトみたいなのあるから一度ポップアップはさんで確認だす
 }
 function sendmessage() {
