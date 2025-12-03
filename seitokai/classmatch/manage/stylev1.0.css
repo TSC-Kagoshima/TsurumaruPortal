@@ -198,8 +198,8 @@ body {
 
 /* 業務連絡一覧画面 */
 #commu-list {
-   margin: 5% 15% 5% 15%;
-   width: 70%;
+   margin: 5% 0 5% 0;
+   width: 100%;
    max-height: 70dvh;
    background: oklch(0.8 0.3 150);
    overflow: auto; 

@@ -1,3 +1,5 @@
+const url = "https://fetch.tsurumarubroadcast.workers.dev/";
+
 function login() {
     const part = document.getElementById('game-branch').value;
     const password = document.getElementById('password').value;
@@ -27,4 +29,11 @@ const value = params.get('term');
             termInput.textContent  = value; // input の値にセット
         }
     }
-})
+ fetch(url + "?type=notice")/////////////////実施年・学期を取得(めっちゃ時間かかったから壊れたらなく)
+  .then(res => res.json())
+  .then(notice => {  // ここは GAS からの配列
+    document.getElementById('commu-list').innerHTML = response;
+  })
+  .catch(err => console.error(err));
+});
+

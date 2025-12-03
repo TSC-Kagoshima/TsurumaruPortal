@@ -108,6 +108,8 @@ body {
    border: 2px solid gold;
    font-weight: 600;
    font-family: "Sawarabi Gothic", sans-serif;
+   color:black;
+
    font-size: 1.25em;
 }
 .select-term-wrapper button:hover {
@@ -155,6 +157,7 @@ body {
    font-weight: 600;
    font-family: "Sawarabi Gothic", sans-serif;
    font-size: 1.25em;
+   color:black;
 }
 .open-site-wrapper button:hover {
    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.37);
@@ -184,6 +187,8 @@ body {
    font-size: 1.5em;
    font-family: "Sawarabi Gothic", sans-serif;
    font-weight: 600;
+   color:black;
+
    border-radius: 25px;
 }
 #create-initial-button:hover {
