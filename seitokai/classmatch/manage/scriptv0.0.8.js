@@ -56,6 +56,12 @@ function sendmessage() {
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  const branchCache = localStorage.getItem('branch');
+  if(branchCache) {
+    const popup = document.querySelector('.popup-select-game');
+    popup.classList.add('success');
+  }
+
  const params = new URLSearchParams(window.location.search);
  const value = params.get('term'); 
     if (value !== null) { // term パラメータが存在する場合だけ
