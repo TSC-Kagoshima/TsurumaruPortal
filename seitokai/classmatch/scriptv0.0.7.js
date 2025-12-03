@@ -212,7 +212,7 @@ function  newConduction() {//////////////////システム新規作成
     method: 'POST',
     body: JSON.stringify(data),
     headers: { "Content-Type": "application/json" }
-  }).then(response => response.text()) // ← テキストとして取得
+  }).then(response => response.json()) // ← テキストとして取得
     .then(response => {
      console.log(response);
     if(response.status == "success") {
