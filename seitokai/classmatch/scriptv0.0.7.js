@@ -215,7 +215,7 @@ function  newConduction() {//////////////////システム新規作成
   }).then(response => response.text()) // ← テキストとして取得
     .then(response => {
      console.log(response);
-    if(response == "success") {
+    if(response.status == "success") {
       document.getElementById('create-conduction-popup-content').textContent = "作成が完了しました。リダイレクトします...";
       window.location.href = "/seitokai/classmatch/index.html";
     } else {
