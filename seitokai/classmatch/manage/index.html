@@ -32,15 +32,15 @@
             <h1>所属する支部を選択してください</h1>
             <select id="game-branch" class="filter radius" required>
                 <option value="" disabled selected>競技支部を選択</option>
-                <option value="soccer">サッカー</option> 
-                <option value="dodgeball">ドッジボール</option> 
-                <option value="tabletennis">卓球</option> 
-                <option value="boy-basketball">男子バスケットボール</option> 
-                <option value="girl-basketball">女子バスケットボール</option> 
-                <option value="boy-volleyball">男子バレーボール</option> 
-                <option value="girl-volleyball">女子バレーボール</option> 
-                <option value="tbc-announce">放送部アナウンス支部</option> 
-                <option value="tbc-tech">放送部技術局/システム管理者</option> 
+                <option value="サッカー">サッカー</option> 
+                <option value="ドッジボール">ドッジボール</option> 
+                <option value="卓球">卓球</option> 
+                <option value="男子バスケットボール">男子バスケットボール</option> 
+                <option value="女子バスケットボール">女子バスケットボール</option> 
+                <option value="男子バレーボール">男子バレーボール</option> 
+                <option value="女子バレーボール">女子バレーボール</option> 
+                <option value="放送部アナウンス局">放送部アナウンス支部</option> 
+                <option value="放送部技術局">放送部技術局/システム管理者</option> 
             </select>
             <input type="text" id="password" class="filter radius" placeholder="パスワードを入力してください"required>
             <button id="send-login-btn" class="filter radius" onclick="login()">次へ</button>
@@ -74,7 +74,7 @@
             <select class="commu-to commu-content radius filter" id="commu-to" name="宛先" required>
                 <option value="" disabled selected >連絡する相手</option>
                 <option value="生徒会本部">生徒会本部</option>
-                <option value="放送部システム制御室">放送部システム制御室</option>     
+                <option value="放送部技術局">放送部技術局</option>     
                 <option value="放送部アナウンス局">放送部アナウンス局</option>
                 <option value="バスケットボール支部">バスケットボール支部</option>
                 <option value="バレーボール支部">バレーボール支部</option>
@@ -90,7 +90,7 @@
                 <option value="場内放送要請">場内放送要請</option>      
             </select>
             <textarea class="commu commu-content radius filter" id="commu-content" name="内容"placeholder="ここに文字を入力" rows="3"></textarea>
-            <button class="commu-content commu-send-btn radius filter" name="送信">送信</button>
+            <button class="commu-content commu-send-btn radius filter" name="送信" onclick="sendmessage()">送信</button>
         </section>
 
 <!-------------------------業務連絡表示セクション------------------------------------>

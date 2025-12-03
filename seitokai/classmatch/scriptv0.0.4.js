@@ -210,9 +210,15 @@ function  newConduction() {//////////////////システム新規作成
     method: 'POST',
     body: JSON.stringify(data),
     headers: { "Content-Type": "application/json" }
-  }).then(() => {
-    alert("作成が完了しました。OKを押すことでリダイレクトします...");
-    window.location.href = "/seitokai/classmatch/index.html";
+  }).then(response => response.text()) // ← テキストとして取得
+    .then(response => {
+    if(response == "success") {
+      document.getElementById('create-conduction-popup-content').textcontent = "作成が完了しました。リダイレクトします...";
+      window.location.href = "/seitokai/classmatch/index.html";
+    } else {
+      document.getElementById('create-conduction-popup-content').textcontent = "送信中にエラーが発生しました。エラー文：" + response;
+    }
+
   })
  }
 
