@@ -29,11 +29,29 @@ const value = params.get('term');
             termInput.textContent  = value; // input の値にセット
         }
     }
- fetch(url + "?type=notice")/////////////////実施年・学期を取得(めっちゃ時間かかったから壊れたらなく)
+ fetch(url + "?type=notice")
   .then(res => res.json())
-  .then(notice => {  // ここは GAS からの配列
-    document.getElementById('commu-list').innerHTML = response;
+  .then(notice => {
+
+    let html = "<table>";
+
+    notice.forEach(row => {
+      html += "<tr>";
+      row.forEach(cell => {
+        html += `<td style="
+          background:${cell.background};
+          color:${cell.color.asRgbString()};
+          font-weight:${cell.bold ? "bold" : "normal"};
+        ">${cell.value}</td>`;
+      });
+      html += "</tr>";
+    });
+
+    html += "</table>";
+
+    document.getElementById('commu-list').innerHTML = html;
   })
   .catch(err => console.error(err));
+
 });
 
