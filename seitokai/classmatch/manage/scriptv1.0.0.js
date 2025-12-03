@@ -40,7 +40,6 @@ const value = params.get('term');
       row.forEach(cell => {
         html += `<td style="
           background:${cell.background};
-          color:${cell.color.asRgbString()};
           font-weight:${cell.bold ? "bold" : "normal"};
         ">${cell.value}</td>`;
       });
