@@ -50,6 +50,13 @@ body {
    margin-top: 3dvh;
 }
 
+.logout {
+   position:fixed;
+   height:4dvh;
+   top: 1dvh;
+   right:1dvw;
+}
+
 /* ログインポップアップ */
 .popup-select-game {
     position: fixed;
@@ -194,6 +201,27 @@ body {
 .commu-send-btn:active {
    box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.37);
    transform: scale(1.00);
+}
+
+.commu-popup {
+   position:fixed;   
+   top:5dvh;
+   left:20dvw;
+
+   width:60dvw;
+   height:10dvh;
+   opacity: 0;
+
+   z-index: -1;
+   transition: top 1.2s ease-in-out, opacity 1.2s ease-in-out;
+}
+.commu-popup.send {
+   top: 10dvh;
+   opacity: 1;
+   transition: top 1.2s ease-in-out, opacity 1.2s ease-in-out;
+
+   z-index: 100;
+   
 }
 
 /* 業務連絡一覧画面 */

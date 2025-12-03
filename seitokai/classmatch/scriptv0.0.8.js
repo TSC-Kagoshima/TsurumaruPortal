@@ -217,7 +217,9 @@ function  newConduction() {//////////////////システム新規作成
      console.log(response);
     if(response.status == "success") {
       document.getElementById('create-conduction-popup-content').textContent = "作成が完了しました。リダイレクトします...";
-      window.location.href = "/seitokai/classmatch/index.html";
+      setTimeout(() => {
+        window.location.href = "/seitokai/classmatch/index.html";
+      }, 1000);  
     } else {
       document.getElementById('create-conduction-popup-content').textContent = "送信中にエラーが発生しました。エラー文：" + response;
     }
