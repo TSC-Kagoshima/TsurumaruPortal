@@ -291,7 +291,7 @@ body {
 .create-conduction-popup {
    position: fixed;
    transform: translate(-50%,-50%);
-   top:30vh;
+   top:60vh;
    left: 50vw;
    
    width:40vw;
@@ -308,7 +308,7 @@ body {
 
    opacity: 1;
    z-index: 1;
-   transition: top 0.5s ease-in-out, opacity 0.5s ease-in-out;
+   transition: top 1.2s ease-in-out, opacity 1.2s ease-in-out;
 }
 
 #create-conduction-popup-content {
