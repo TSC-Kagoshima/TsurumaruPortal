@@ -170,6 +170,8 @@ document.addEventListener('click', e => {//////////リーグとチームの追�
 const url = "https://fetch.tsurumarubroadcast.workers.dev/";
 
 function  newConduction() {//////////////////システム新規作成
+  document.querySelector('.create-conduction-popup').classList.add('send');
+
   const year = document.getElementById('conduct-year').value;
   const term = document.getElementById('conduct-school-term').value;
    const data = {
@@ -212,6 +214,7 @@ function  newConduction() {//////////////////システム新規作成
     headers: { "Content-Type": "application/json" }
   }).then(response => response.text()) // ← テキストとして取得
     .then(response => {
+     console.log(response);
     if(response == "success") {
       document.getElementById('create-conduction-popup-content').textcontent = "作成が完了しました。リダイレクトします...";
       window.location.href = "/seitokai/classmatch/index.html";

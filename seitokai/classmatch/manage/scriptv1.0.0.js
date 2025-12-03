@@ -23,7 +23,6 @@ function login() {
 }
 
 function sendmessage() {
-    const 
 }
 
 document.addEventListener('DOMContentLoaded', () => {
