@@ -15,7 +15,7 @@ function login() {
             alert('認証が完了しました');
             localStorage.setItem("branch", gamebranch);
             localStorage.setItem('term', value);
-            document.querySelector('logout').classList.add('visible')
+            document.querySelector('.logout').classList.add('visible')
                 } else {
             alert('パスワードが違います');
         }
