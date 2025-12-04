@@ -83,7 +83,7 @@ function notice() {
             termInput.textContent  = value; // input の値にセット
         }
     }
- fetch(url + "?type=notice")
+ fetch(url + "?type=getNotice")
   .then(res => res.json())
   .then(notice => {
 
