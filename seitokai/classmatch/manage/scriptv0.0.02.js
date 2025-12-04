@@ -28,13 +28,13 @@ function logout() {
    window.location.href = "";
 }
 
-const commubutton = false;//状態フラグ
+let commubutton = false;//状態フラグ
 function sendmessage() {
   if(commubutton == true) {
     return;
   }
 
-  const commubutton = true;
+  commubutton = true;
 
   const commuFrom = localStorage.getItem("branch");
   const commuTo = document.getElementById('commu-to').value;
@@ -56,6 +56,7 @@ function sendmessage() {
   document.getElementById('commu-popup-content').innerHTML = "送信が完了しました。　相手：" + commuTo + "<br>種別：" + commuType + "<br>内容：" + commuContent;
   setTimeout(() => {
     document.querySelector('.commu-popup').classList.remove('send');
+    commubutton = false;
   }, 2000);
 
 
@@ -68,6 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const popup = document.querySelector('.popup-select-game');
     popup.classList.add('success');
   }
+
+  notice();
+});
+
+function notice() {
 
  const params = new URLSearchParams(window.location.search);
  const value = params.get('term'); 
@@ -99,6 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('commu-list').innerHTML = html;
   })
   .catch(err => console.error(err));
-
-});
+}
+    setInterval(notice, 10000);
 

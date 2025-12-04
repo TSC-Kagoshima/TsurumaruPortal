@@ -242,7 +242,6 @@ body {
    left:20dvw;
 
    width:60dvw;
-   height:10dvh;
    opacity: 0;
 
    z-index: -1;
@@ -252,9 +251,9 @@ body {
    top: 10dvh;
    opacity: 1;
    transition: top 1.2s ease-in-out, opacity 1.2s ease-in-out;
-
+   padding-left:5vw;
    z-index: 100;
-   
+   font-size:1.25vw;
 }
 
 /* 業務連絡一覧画面 */
