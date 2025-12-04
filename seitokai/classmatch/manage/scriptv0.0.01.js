@@ -15,6 +15,7 @@ function login() {
             alert('認証が完了しました');
             localStorage.setItem("branch", gamebranch);
             localStorage.setItem('term', value);
+            document.querySelector('logout').classList.add('visible')
                 } else {
             alert('パスワードが違います');
         }
@@ -25,9 +26,16 @@ function login() {
 function logout() {
    localStorage.clear('branch');
    window.location.href = "";
-   ///////絶対誤操作でログアウトみたいなのあるから一度ポップアップはさんで確認だす
 }
+
+const commubutton = false;//状態フラグ
 function sendmessage() {
+  if(commubutton == true) {
+    return;
+  }
+
+  const commubutton = true;
+
   const commuFrom = localStorage.getItem("branch");
   const commuTo = document.getElementById('commu-to').value;
   const commuType = document.getElementById('commu-type').value;

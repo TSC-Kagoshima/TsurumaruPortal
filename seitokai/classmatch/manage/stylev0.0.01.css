@@ -55,6 +55,39 @@ body {
    height:4dvh;
    top: 1dvh;
    right:1dvw;
+   display: none;
+}
+.logout.visible {
+   display: block;
+}
+.logout.active {
+   box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.37);
+   transform: scale(1.00);
+}
+.logout-popup {
+   position:fixed;
+   width:60dvw;
+   height:40dvh;
+   margin:10dvh 20dvw 30dvh 20dvw;
+
+   opacity: 0;
+   transform: scale(0);
+   transition:opacity 0.5s ease-in-out,transform 0.5s ease-in-out;
+   z-index:101;
+
+   font-size: 2vw;
+   text-align: center;
+   padding-top:20dvh;
+}
+.logout-popup.visible {
+   opacity: 1;
+   transform: scale(1);
+   transition:opacity 0.5s ease-in-out,transform 0.5s ease-in-out;
+}
+.logout-popup button {
+   width:30%;
+   height:15%;
+   font-size:2vw;
 }
 
 /* ログインポップアップ */
