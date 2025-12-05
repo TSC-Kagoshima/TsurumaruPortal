@@ -53,7 +53,7 @@ function sendmessage() {
   document.getElementById('commu-content').value = "";
 
   document.querySelector('.commu-popup').classList.add('send');
-  document.getElementById('commu-popup-content').innerHTML = "送信が完了しました。　相手：" + commuTo + "<br>種別：" + commuType + "<br>内容：" + commuContent;
+  document.getElementById('commu-popup-content').innerHTML = "送信が完了しました。　相手：" + commu.commuTo + "<br>種別：" + commu.commuType + "<br>内容：" + commuContent;
   setTimeout(() => {
     document.querySelector('.commu-popup').classList.remove('send');
     commubutton = false;
