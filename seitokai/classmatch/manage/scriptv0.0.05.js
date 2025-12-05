@@ -36,15 +36,15 @@ function sendmessage() {
 
   commubutton = true;
 
-  const commuFrom = localStorage.getItem("branch");
-  const commuTo = document.getElementById('commu-to').value;
-  const commuType = document.getElementById('commu-type').value;
-  const commuContent = document.getElementById('commu-content').value;
-  const commu = [commuFrom, commuTo, commuType, commuContent];
-
+  const commu = {
+  afrom: localStorage.getItem("branch"),
+  to: document.getElementById('commu-to').value,
+  type: document.getElementById('commu-type').value,
+  content: document.getElementById('commu-content').value
+};
   fetch(url + "?type=sendcommu", {
     method:"POST",
-    body: JSON.stringify(commu),
+    body: commu,
     headers: { "Content-Type": "application/json" }
   }).then(response => response.json()) // ← テキストとして取得
 
@@ -57,7 +57,7 @@ function sendmessage() {
   setTimeout(() => {
     document.querySelector('.commu-popup').classList.remove('send');
     commubutton = false;
-  }, 2000);
+  }, 3000);
 
 
 }
