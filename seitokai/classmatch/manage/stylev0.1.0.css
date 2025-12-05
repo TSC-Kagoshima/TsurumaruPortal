@@ -257,10 +257,35 @@ body {
 }
 
 /* 業務連絡一覧画面 */
+/* 業務連絡一覧画面 */
 #commu-list {
    margin: 5% 0 5% 0;
    width: 100%;
    max-height: 70dvh;
-   background: oklch(0.8 0.3 150);
    overflow: auto; 
+   display: flex;
+}
+.commulist {
+   width: 90%;
+   margin:1% 5% 1% 5%;
+}
+.commulist.selected {
+   background: oklch(0.6 0.3 120);
+}
+.commulist-from , .commulist-to , .commulist-type, .commulist-check{
+   display: inline-flex;
+   margin: 1% 0 0 0;
+}
+.commulist-from {
+   font-size:1.2vw;
+   font-weight: 400;
+   margin-left:5%
+}
+.commulist-type {
+   color:blue;
+}
+.commulist-content {
+   margin-left:7%;
+   border-top: 2px white solid;
+   padding-top:5px;
 }

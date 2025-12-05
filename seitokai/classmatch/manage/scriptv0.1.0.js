@@ -87,24 +87,39 @@ function notice() {
   .then(res => res.json())
   .then(notice => {
     console.log(notice);
-    let html = "<table>";
-
-    notice.forEach(row => {
-      html += "<tr>";
-      row.forEach(cell => {
-        html += `<td style="
+    let html = "";
+    const idMap = ["to", "type", "from", "content"];
+notice.forEach(row => {
+    const fValue = row[5].value; 
+    html += `<div class='commulist filter radius' id="${fValue}">`;
+    row.forEach((cell, cellIndex)=> {
+        const idValue = idMap[cellIndex];
+        html += `<p class='commulist-${idValue}  style="
           background:${cell.background};
-          font-weight:${cell.bold ? "bold" : "normal"};
-        ">${cell.value}</td>`;
-      });
-      html += "</tr>";
+          font-weight:${cell.bold ? "bold" : "normal"};">${cell.value}</p>`
     });
-
-    html += "</table>";
-
+    html += "</div>";
+});
     document.getElementById('commu-list').innerHTML = html;
   })
   .catch(err => console.error(err));
 }
     setInterval(notice, 10000);
 
+////////notice既読機能付き
+
+// クリックで選択状態を切り替える
+document.querySelectorAll('.commulist').forEach(div => {
+    div.addEventListener('click', () => {
+        div.classList.toggle('selected');
+        const idToSend = {
+            readid : div.dataset.id
+        }; // data-id を取得
+        fetch(url + "type=readcommu", {
+            method:"POST",
+            body: JSON.stringify(idToSend),
+            headers: { "Content-Type": "application/json" }
+        }).then(response => response.json()) // ← テキストとして取得
+
+    });
+});
