@@ -257,13 +257,13 @@ body {
 }
 
 /* 業務連絡一覧画面 */
-/* 業務連絡一覧画面 */
 #commu-list {
    margin: 5% 0 5% 0;
    width: 100%;
    max-height: 70dvh;
    overflow: auto; 
-   display: flex;
+   overflow-y: auto;    
+   overflow-x: hidden; 
 }
 .commulist {
    width: 90%;
