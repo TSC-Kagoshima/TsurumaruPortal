@@ -102,6 +102,8 @@ notice.forEach(row => {
     document.getElementById('commu-list').innerHTML = html;
   })
   .catch(err => console.error(err));
+
+  scrollToBottom();
 }
     setInterval(notice, 10000);
 
@@ -116,9 +118,14 @@ document.querySelectorAll('.commulist').forEach(div => {
         }; // data-id を取得
         fetch(url + "type=readcommu", {
             method:"POST",
-            body: JSON.stringify(idToSend),
+            body: {id:JSON.stringify(idToSend)},
             headers: { "Content-Type": "application/json" }
         }).then(response => response.json()) // ← テキストとして取得
 
     });
 });
+
+function scrollToBottom() {
+    const commuList = document.getElementById('commu-list');
+    commuList.scrollTop = commuList.scrollHeight;
+}

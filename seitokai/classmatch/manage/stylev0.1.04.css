@@ -289,3 +289,6 @@ body {
    border-top: 2px white solid;
    padding-top:5px;
 }
+.commulist-col4, .commulist-col5 {
+   display: none;
+}
