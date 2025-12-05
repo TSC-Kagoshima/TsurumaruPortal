@@ -90,12 +90,11 @@ function notice() {
     let html = "";
     const idMap = ["from", "to", "type", "content"];
 notice.forEach(row => {
-    const fValue = row[5]; 
+    const fValue = row[5].value; 
     html += `<div class='commulist filter radius' id="${fValue}">`;
     row.forEach((cell, cellIndex)=> {
-        const idValue = idMap[cellIndex];
-        html += `<p class='commulist-${idValue}  style="
-          background:${cell.background};
+        const idValue = idMap[cellIndex] || `col${cellIndex}`;
+        html += `<p class="commulist-${idValue}"  style="
           font-weight:${cell.bold ? "bold" : "normal"};">${cell.value}</p>`
     });
     html += "</div>";
