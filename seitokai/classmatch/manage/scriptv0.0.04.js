@@ -86,7 +86,7 @@ function notice() {
  fetch(url + "?type=getNotice")
   .then(res => res.json())
   .then(notice => {
-
+    console.log(notice);
     let html = "<table>";
 
     notice.forEach(row => {
