@@ -90,7 +90,7 @@ function notice() {
     let html = "";
     const idMap = ["to", "type", "from", "content"];
 notice.forEach(row => {
-    const fValue = row[5].value; 
+    const fValue = row[5]; 
     html += `<div class='commulist filter radius' id="${fValue}">`;
     row.forEach((cell, cellIndex)=> {
         const idValue = idMap[cellIndex];
