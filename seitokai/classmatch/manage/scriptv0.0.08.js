@@ -44,7 +44,7 @@ function sendmessage() {
 };
   fetch(url + "?type=sendcommu", {
     method:"POST",
-    body: commu,
+    body: JSON.stringify(commu),
     headers: { "Content-Type": "application/json" }
   }).then(response => response.json()) // ← テキストとして取得
 
