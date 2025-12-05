@@ -88,7 +88,7 @@ function notice() {
   .then(notice => {
     console.log(notice);
     let html = "";
-    const idMap = ["to", "type", "from", "content"];
+    const idMap = ["from", "to", "type", "content"];
 notice.forEach(row => {
     const fValue = row[5]; 
     html += `<div class='commulist filter radius' id="${fValue}">`;
