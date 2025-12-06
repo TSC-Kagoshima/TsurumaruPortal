@@ -15,7 +15,7 @@ async function login() {
 
     const json = await res.json();
       console.log(json);
-      if(text.result == "success") {
+      if(json.result == "success") {
         document.querySelector('.popup-select-game').classList.add('success');
         document.getElementById('commu-popup-content').innerHTML = "ログインしました。" 
           + new URLSearchParams(window.location.search).get('term') + "：" + document.getElementById('game-branch').value;
