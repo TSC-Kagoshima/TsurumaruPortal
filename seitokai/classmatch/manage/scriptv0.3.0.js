@@ -91,7 +91,7 @@ function sendGameResult() {
   document.getElementById('team2point').value = "";
 
   document.querySelector('.commu-popup').classList.add('send');
-  document.getElementById('commu-popup-content').innerHTML = "送信が完了しました。" + result.game + result.type + "試合結果：" + result.team1 + "：" + result.point1 "VS" + result.team2 + "：" +result.point2;
+  document.getElementById('commu-popup-content').innerHTML = "送信が完了しました。" + result.game + result.type + "試合結果：" + result.team1 + "：" + result.point1 + "VS" + result.team2 + "：" + result.point2;
   setTimeout(() => {
     document.querySelector('.commu-popup').classList.remove('send');
     commubutton = false;
