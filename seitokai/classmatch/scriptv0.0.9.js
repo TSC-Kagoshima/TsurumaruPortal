@@ -231,7 +231,7 @@ function  newConduction() {//////////////////システム新規作成
   .then(res => res.json())
   .then(getTerms => {  // ここは GAS からの配列
     const selects = document.querySelectorAll(".termSelect"); // NodeList
-
+    console.log(getTerms);
     selects.forEach(select => {  // 各 <select> 要素に対して
       getTerms.forEach(name => {  // 配列をループ
         const option = document.createElement("option");
