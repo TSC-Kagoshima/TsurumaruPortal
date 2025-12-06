@@ -73,6 +73,27 @@ document.addEventListener('DOMContentLoaded', () => {
   notice();
 });
 
+async function fetchNotice() {
+  try {
+    // Workers 側でキャッシュ更新があるか確認
+    const res = await fetch(`${url}?type=getNotice&longpoll=true&lastUpdate=${lastUpdate}`);
+    const result = await res.json();
+
+    // 更新があった場合だけ notice() を呼ぶ
+    if (result.updated) {
+      lastUpdate = result.timestamp; // タイムスタンプ更新
+      notice();                      // 既存の描画処理を呼び出す
+    }
+  } catch (err) {
+    console.error(err);
+  } finally {
+    // Long Polling ループ
+    fetchNotice();
+  }
+}
+
+// ページロード時に開始
+fetchNotice();
 function notice() {
 
  const params = new URLSearchParams(window.location.search);
@@ -104,7 +125,6 @@ notice.forEach(row => {
   })
   .catch(err => console.error(err));
 }
-    setInterval(notice, 10000);
 
 ////////notice既読機能
 
