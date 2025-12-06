@@ -63,7 +63,7 @@ function sendmessage() {
 }
 
 let sendbutton = false;
-function sendResult() {
+function sendGameResult() {
   if(sendbutton == true) { 
     return;
   }
