@@ -16,15 +16,18 @@ async function login() {
     const json = await res.json();
       console.log(json);
       if(json.result == "success") {
-        document.querySelector('.popup-select-game').classList.add('success');
-        document.getElementById('commu-popup-content').innerHTML = "ログインしました。" 
-          + new URLSearchParams(window.location.search).get('term') + "：" + document.getElementById('game-branch').value;
-        loadGame();
-        document.querySelector('.logout').classList.add('visible');
+          loginSuccess();
       } else {
         alert('支部、またはパスワードが違います。実施学期を間違えた場合は前のページに戻ってください。');
-      }
-  
+      }      
+  }    
+function loginSuccess() {
+      document.querySelector('.popup-select-game').classList.add('success');
+      localStorage.setItem()
+      document.getElementById('commu-popup-content').innerHTML = "ログインしました。" 
+        + new URLSearchParams(window.location.search).get('term') + "：" + document.getElementById('game-branch').value;
+        loadGame();
+        document.querySelector('.logout').classList.add('visible');
 }
 function logout() {
    localStorage.clear('branch');
