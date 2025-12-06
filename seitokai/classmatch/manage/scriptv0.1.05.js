@@ -111,11 +111,11 @@ function notice() {
     const rows = notice.data || notice;
     let html = "";
     const idMap = ["from", "to", "type", "content"];
-notice.forEach(row => {
-    const eValue = row[4].value;
-    const fValue = row[5].value; 
-    html += `<div class='commulist filter radius ${eValue}' data-id="${fValue}">`;
-    row.forEach((cell, cellIndex)=> {
+    rows.forEach(row => {
+      const eValue = row[4].value;
+      const fValue = row[5].value; 
+      html += `<div class='commulist filter radius ${eValue}' data-id="${fValue}">`;
+      row.forEach((cell, cellIndex)=> {
         const idValue = idMap[cellIndex] || `col${cellIndex}`;
         html += `<p class="commulist-${idValue}"  style="
           font-weight:${cell.bold ? "bold" : "normal"};">${cell.value}</p>`
