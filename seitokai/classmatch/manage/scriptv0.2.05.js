@@ -88,9 +88,6 @@ if (gameteam) {
   .then(res => {
     const allTeams = res.flatMap(l => [l.team1, l.team2, l.team3, l.team4]);
     const selects = document.querySelectorAll('.game-team');
-  console.log("res:", res); 
-  console.log("type:", typeof res);
-    console.log("allTeams:", allTeams);
     selects.forEach(select => {
       select.innerHTML = ""; // 初期化
       allTeams.forEach(team => {
