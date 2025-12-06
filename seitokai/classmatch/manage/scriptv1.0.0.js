@@ -20,6 +20,7 @@ async function login() {
         document.getElementById('commu-popup-content').innerHTML = "ログインしました。" 
           + new URLSearchParams(window.location.search).get('term') + "：" + document.getElementById('game-branch').value;
         loadGame();
+        document.querySelector('.logout').classList.add('visible');
       } else {
         alert('支部、またはパスワードが違います。実施学期を間違えた場合は前のページに戻ってください。');
       }
@@ -93,7 +94,8 @@ function sendGameResult() {
   document.getElementById('team2point').value = "";
 
   document.querySelector('.commu-popup').classList.add('send');
-  document.getElementById('commu-popup-content').innerHTML = "送信が完了しました。" + result.game + result.type + "試合結果：" + result.team1 + "：" + result.point1 + "VS" + result.team2 + "：" + result.point2;
+  document.getElementById('commu-popup-content').innerHTML = `
+  送信が完了しました。<br> <big>${result.game}</big>${result.type}　試合結果　${result.team1}　${result.point1}点 VS ${result.team2}　${result.point2}点`;
   setTimeout(() => {
     document.querySelector('.commu-popup').classList.remove('send');
     commubutton = false;
@@ -113,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const popup = document.querySelector('.popup-select-game');
       popup.classList.add('success');
       loadGame();
+      document.querySelector('.logout').classList.add('.visible')
     }
   }
   
