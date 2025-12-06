@@ -116,6 +116,7 @@ document.getElementById('commu-list').addEventListener('click', (e) => {
     div.classList.toggle('selected');
 
     const idToSend = { readid: div.dataset.id };
+    console.log(idToSend);
     fetch(url + "?type=readcommu", {
         method: "POST",
         body: JSON.stringify(idToSend),
