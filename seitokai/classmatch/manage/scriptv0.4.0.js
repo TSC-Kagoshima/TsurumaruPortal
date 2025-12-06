@@ -1,27 +1,27 @@
 const url = "https://fetch.tsurumarubroadcast.workers.dev/";
 
 function login() {
-    const part = document.getElementById('game-branch').value;
-    const password = document.getElementById('password').value;
-    const set = [part, password];
-    ////あとはfetchでgasへ
-    const params = new URLSearchParams(window.location.search);
-    const value = params.get('term'); 
-    const popup = document.querySelector('.popup-select-game');
-    if(value == "テスト用") {
-        if(part === "放送部技術局" && password === "1234") {
-            const gamebranch = document.getElementById('game-branch').value;
-            popup.classList.add('success');
-            alert('認証が完了しました');
-            localStorage.setItem("branch", gamebranch);
-            localStorage.setItem('term', value);
-            document.querySelector('.logout').classList.add('visible')
-                } else {
-            alert('パスワードが違います');
-        }
-    } else {
-        alert('現在メンテナンス中です。');
+    document.getElementById('send-login-btn').value = "送信中";
+
+    fetch(url + "type=login", {
+      method:"POST",
+      body: {
+        term: new URLSearchParams(window.location.search).get('term'),
+        branch: document.getElementById('game-branch').value,
+        password: document.getElementById('password').value
+      },
+    headers: { "Content-Type": "application/json" }
+    }).then(res => {
+      if(res == "success") {
+        document.querySelector('.popup-select-game').classList.add(success);
+        document.getElementById('commu-popup-content').innerHTML = "ログインしました。" 
+          + new URLSearchParams(window.location.search).get('term') + "：document.getElementById('game-branch').value";
+      } else {
+        alert('支部、またはパスワードが違います。実施学期を間違えた場合は前のページに戻ってください。');
+      }
     }
+
+    )
 }
 function logout() {
    localStorage.clear('branch');
