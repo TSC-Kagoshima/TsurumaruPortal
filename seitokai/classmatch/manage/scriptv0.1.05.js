@@ -103,18 +103,16 @@ notice.forEach(row => {
     document.getElementById('commu-list').innerHTML = html;
   })
   .catch(err => console.error(err));
-
-  scrollToBottom();
 }
     setInterval(notice, 10000);
 
-////////notice既読機能付き
+////////notice既読機能
 
 document.getElementById('commu-list').addEventListener('click', (e) => {
     const div = e.target.closest('.commulist');
     if (!div) return; // .commulist じゃなければ無視
 
-    div.classList.toggle('read');
+    div.classList.add('read');
 
     const idToSend = { readid: div.dataset.id };
     console.log(idToSend);
