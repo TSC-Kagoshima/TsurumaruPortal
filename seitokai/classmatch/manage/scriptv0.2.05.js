@@ -41,7 +41,7 @@ function sendmessage() {
   to: document.getElementById('commu-to').value,
   type: document.getElementById('commu-type').value,
   content: document.getElementById('commu-content').value
-};
+ };
   fetch(url + "?type=sendcommu", {
     method:"POST",
     body: JSON.stringify(commu),
@@ -71,7 +71,41 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   notice();
+
+  const gameteam = localStorage.getItem('branch').slice(0, -2);
+  const value = params.get('term'); 
+
+  if(gameteam) {
+    fetch(url + "?type=selectteam", {
+    method:"POST",
+    body: JSON.stringify({
+      term: value,
+      game: gameteam 
+    }),
+      headers: { "Content-Type": "application/json" }
+    }).(response => {
+      const res = response.json();
+      const allTeams = res.flatMap(l => [l.team1, l.team2, l.team3, l.team4]);
+      const selects = document.querySelectorAll('.game-team');
+      const option = [];
+       selects.forEach(select => {
+        serect.innerHTML = ""; // いったん初期化
+        allTeams.forEach(team => {
+          const option = document.createElement("option");
+          option.value = team;
+          option.textContent = team;
+          select.appendChild(option);
+        });
+      });
+    })
+    .catch(err => console.error(err));
+}
+    })
+
+  }
 });
+
+
 let lastUpdate = 0;  
 async function fetchNotice() {
   try {
