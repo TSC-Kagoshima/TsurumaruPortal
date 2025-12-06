@@ -108,6 +108,7 @@ function notice() {
   .then(res => res.json())
   .then(notice => {
     console.log(notice);
+    const rows = notice.data || notice;
     let html = "";
     const idMap = ["from", "to", "type", "content"];
 notice.forEach(row => {
