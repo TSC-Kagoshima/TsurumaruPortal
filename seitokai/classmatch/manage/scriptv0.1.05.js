@@ -118,7 +118,7 @@ document.querySelectorAll('.commulist').forEach(div => {
         }; // data-id を取得
         fetch(url + "type=readcommu", {
             method:"POST",
-            body: JSON.stringify(idToSend);
+            body: JSON.stringify(idToSend),
             headers: { "Content-Type": "application/json" }
         }).then(response => response.json()) // ← テキストとして取得
         console.log(response);
