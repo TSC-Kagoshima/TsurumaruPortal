@@ -101,17 +101,22 @@ function sendGameResult() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const value = params.get('term'); 
 
   const branchCache = localStorage.getItem('branch');
+  const termCache = localStorage.getItem('term')
   if(branchCache) {
-    const popup = document.querySelector('.popup-select-game');
-    popup.classList.add('success');
+    if(termCache == value) {    
+      const popup = document.querySelector('.popup-select-game');
+      popup.classList.add('success');
+    }
   }
 
   notice();
-  const params = new URLSearchParams(window.location.search);
+
   const gameteam = localStorage.getItem('branch').slice(0, -2);
-  const value = params.get('term'); 
+
 
 if (gameteam) {
   fetch(url + "?type=selectteam", {

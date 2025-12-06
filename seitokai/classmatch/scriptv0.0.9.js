@@ -240,6 +240,7 @@ function  newConduction() {//////////////////システム新規作成
       // オブジェクトの場合は値だけ取り出す
       getTerms = Object.values(data).filter(v => typeof v === "string");
     }
+          console.log(getTerms); // 確認用
     selects.forEach(select => {  // 各 <select> 要素に対して
       getTerms.forEach(name => {  // 配列をループ
         const option = document.createElement("option");
