@@ -229,9 +229,17 @@ function  newConduction() {//////////////////システム新規作成
 
  fetch(url + "?type=getTerms")/////////////////実施年・学期を取得(めっちゃ時間かかったから壊れたらなく)
   .then(res => res.json())
-  .then(getTerms => {  // ここは GAS からの配列
+  .then(data => {  // ここは GAS からの配列
     const selects = document.querySelectorAll(".termSelect"); // NodeList
-    console.log(getTerms);
+    let getTerms;
+    if (Array.isArray(data)) {
+      getTerms = data;  // 本物の配列
+    } else if (typeof data === "string") {
+      getTerms = JSON.parse(data); // JSON文字列を配列に変換
+    } else {
+      // オブジェクトの場合は値だけ取り出す
+      getTerms = Object.values(data).filter(v => typeof v === "string");
+    }
     selects.forEach(select => {  // 各 <select> 要素に対して
       getTerms.forEach(name => {  // 配列をループ
         const option = document.createElement("option");
