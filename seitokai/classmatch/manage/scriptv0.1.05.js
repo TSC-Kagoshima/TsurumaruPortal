@@ -90,8 +90,9 @@ function notice() {
     let html = "";
     const idMap = ["from", "to", "type", "content"];
 notice.forEach(row => {
+    const eValue = row[4].value;
     const fValue = row[5].value; 
-    html += `<div class='commulist filter radius' data-id="${fValue}">`;
+    html += `<div class='commulist filter radius ${eValue}' data-id="${fValue}">`;
     row.forEach((cell, cellIndex)=> {
         const idValue = idMap[cellIndex] || `col${cellIndex}`;
         html += `<p class="commulist-${idValue}"  style="
@@ -113,7 +114,7 @@ document.getElementById('commu-list').addEventListener('click', (e) => {
     const div = e.target.closest('.commulist');
     if (!div) return; // .commulist じゃなければ無視
 
-    div.classList.toggle('selected');
+    div.classList.toggle('read');
 
     const idToSend = { readid: div.dataset.id };
     console.log(idToSend);

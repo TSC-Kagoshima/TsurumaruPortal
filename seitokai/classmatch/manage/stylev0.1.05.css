@@ -269,7 +269,7 @@ body {
    width: 90%;
    margin:1% 5% 1% 5%;
 }
-.commulist.selected {
+.commulist.read {
    background: oklch(0.6 0.3 120);
 }
 .commulist-from , .commulist-to , .commulist-type, .commulist-check{
