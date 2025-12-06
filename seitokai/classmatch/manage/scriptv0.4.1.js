@@ -19,6 +19,7 @@ async function login() {
         document.querySelector('.popup-select-game').classList.add('success');
         document.getElementById('commu-popup-content').innerHTML = "ログインしました。" 
           + new URLSearchParams(window.location.search).get('term') + "：" + document.getElementById('game-branch').value;
+        loadGame();
       } else {
         alert('支部、またはパスワードが違います。実施学期を間違えた場合は前のページに戻ってください。');
       }
@@ -111,12 +112,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if(termCache == value) {    
       const popup = document.querySelector('.popup-select-game');
       popup.classList.add('success');
+      loadGame();
     }
   }
-
+  
   notice();
-
-  const gameteam = localStorage.getItem('branch').slice(0, -2);
+});
+function loadGame() {
+    const params = new URLSearchParams(window.location.search);
+    const value = params.get('term'); 
+    const gameteam = localStorage.getItem('branch').slice(0, -2);
 
 
 if (gameteam) {
@@ -146,9 +151,7 @@ if (gameteam) {
   })
   .catch(err => console.error(err));
 }
-
-});
-
+}
 
 let lastUpdate = 0;  
 async function fetchNotice() {
