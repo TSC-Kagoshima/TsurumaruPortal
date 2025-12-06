@@ -13,10 +13,11 @@ function login() {
     headers: { "Content-Type": "application/json" }
     }).then(res => res.text())  // ← ここで文字列を取得
     .then(text => {
+      console.log(text);
       if(text == "success") {
         document.querySelector('.popup-select-game').classList.add('success');
         document.getElementById('commu-popup-content').innerHTML = "ログインしました。" 
-          + new URLSearchParams(window.location.search).get('term') + "：document.getElementById('game-branch').value";
+          + new URLSearchParams(window.location.search).get('term') + "：" + document.getElementById('game-branch').value;
       } else {
         alert('支部、またはパスワードが違います。実施学期を間違えた場合は前のページに戻ってください。');
       }
