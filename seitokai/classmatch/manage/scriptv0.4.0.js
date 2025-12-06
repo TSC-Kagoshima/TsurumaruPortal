@@ -1,6 +1,6 @@
 const url = "https://fetch.tsurumarubroadcast.workers.dev/";
 
-function login() {
+async function login() {
     document.getElementById('send-login-btn').textContent = "送信中";
 
     const res = fetch(url + "?type=login", {
