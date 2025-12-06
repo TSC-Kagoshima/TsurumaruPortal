@@ -121,7 +121,7 @@ function notice() {
           font-weight:${cell.bold ? "bold" : "normal"};">${cell.value}</p>`
     });
     html += "</div>";
-});
+ });
     document.getElementById('commu-list').innerHTML = html;
   })
   .catch(err => console.error(err));
