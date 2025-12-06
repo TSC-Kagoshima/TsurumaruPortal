@@ -62,6 +62,44 @@ function sendmessage() {
 
 }
 
+let sendbutton = false;
+function sendResult() {
+  if(sendbutton == true) { 
+    return;
+  }
+  commubutton = true;
+  const result = {
+    game: localStorage.getItem("branch").slice(0,-2),
+    type: document.getElementById('game-type').value,
+    team1: document.getElementById('team1').value,
+    point1: document.getElementById('team1point').value,
+    team1: document.getElementById('team2').value,
+    point1: document.getElementById('team2point').value,
+    term: localStorage.getItem("term")
+  };
+
+  fetch(url + "?type=sendresult", {
+    method: "POST",
+    body: JSON.stringify(result),
+    headers: { "Content-Type": "application/json" }
+  }).then(response => response.json())
+  
+  document.getElementById('game-type').value = "";
+  document.getElementById('team1').value = "";
+  document.getElementById('team1point').value = "";
+  document.getElementById('team2').value = "";
+  document.getElementById('team2point').value = "";
+
+  document.querySelector('.commu-popup').classList.add('send');
+  document.getElementById('commu-popup-content').innerHTML = "送信が完了しました。" + result.game + result.type + "試合結果：" + result.team1 + "：" + result.point1 "VS" + result.team2 + "：" +result.point2;
+  setTimeout(() => {
+    document.querySelector('.commu-popup').classList.remove('send');
+    commubutton = false;
+  }, 3000);
+
+
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
   const branchCache = localStorage.getItem('branch');
