@@ -3,7 +3,7 @@ const url = "https://fetch.tsurumarubroadcast.workers.dev/";
 function login() {
     document.getElementById('send-login-btn').value = "送信中";
 
-    fetch(url + "type=login", {
+    fetch(url + "?type=login", {
       method:"POST",
       body: {
         term: new URLSearchParams(window.location.search).get('term'),
