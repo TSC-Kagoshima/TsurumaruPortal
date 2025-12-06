@@ -73,8 +73,8 @@ function sendGameResult() {
     type: document.getElementById('game-type').value,
     team1: document.getElementById('team1').value,
     point1: document.getElementById('team1point').value,
-    team1: document.getElementById('team2').value,
-    point1: document.getElementById('team2point').value,
+    team2: document.getElementById('team2').value,
+    point2: document.getElementById('team2point').value,
     term: localStorage.getItem("term")
   };
 
