@@ -91,7 +91,7 @@ function notice() {
     const idMap = ["from", "to", "type", "content"];
 notice.forEach(row => {
     const fValue = row[5].value; 
-    html += `<div class='commulist filter radius' id="${fValue}">`;
+    html += `<div class='commulist filter radius' data-id="${fValue}">`;
     row.forEach((cell, cellIndex)=> {
         const idValue = idMap[cellIndex] || `col${cellIndex}`;
         html += `<p class="commulist-${idValue}"  style="
