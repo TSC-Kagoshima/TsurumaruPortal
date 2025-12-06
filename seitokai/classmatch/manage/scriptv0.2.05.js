@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   notice();
-
+  const params = new URLSearchParams(window.location.search);
   const gameteam = localStorage.getItem('branch').slice(0, -2);
   const value = params.get('term'); 
 
