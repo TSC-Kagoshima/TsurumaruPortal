@@ -83,7 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
       game: gameteam 
     }),
       headers: { "Content-Type": "application/json" }
-    }).(response => {
+    })
+    .then(response => {
       const res = response.json();
       const allTeams = res.flatMap(l => [l.team1, l.team2, l.team3, l.team4]);
       const selects = document.querySelectorAll('.game-team');
