@@ -5,11 +5,11 @@ function login() {
 
     fetch(url + "?type=login", {
       method:"POST",
-      body: {
+      body: JSON.stringify({
         term: new URLSearchParams(window.location.search).get('term'),
         branch: document.getElementById('game-branch').value,
         password: document.getElementById('password').value
-      },
+      }),
     headers: { "Content-Type": "application/json" }
     }).then(res => {
       if(res == "success") {
