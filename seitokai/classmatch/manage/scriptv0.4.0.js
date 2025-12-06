@@ -3,7 +3,7 @@ const url = "https://fetch.tsurumarubroadcast.workers.dev/";
 function login() {
     document.getElementById('send-login-btn').textContent = "送信中";
 
-    fetch(url + "?type=login", {
+    const res = fetch(url + "?type=login", {
       method:"POST",
       body: JSON.stringify({
         term: new URLSearchParams(window.location.search).get('term'),
@@ -11,8 +11,9 @@ function login() {
         password: document.getElementById('password').value
       }),
     headers: { "Content-Type": "application/json" }
-    }).then(res => res.text())  // ← ここで文字列を取得
-    .then(text => {
+    })
+
+    const text = await res.text();
       console.log(text);
       if(text == "success") {
         document.querySelector('.popup-select-game').classList.add('success');
@@ -21,7 +22,7 @@ function login() {
       } else {
         alert('支部、またはパスワードが違います。実施学期を間違えた場合は前のページに戻ってください。');
       }
-    })
+  
 }
 function logout() {
    localStorage.clear('branch');
