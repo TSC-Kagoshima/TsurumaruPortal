@@ -1,7 +1,7 @@
 const url = "https://fetch.tsurumarubroadcast.workers.dev/";
 
 function login() {
-    document.getElementById('send-login-btn').value = "送信中";
+    document.getElementById('send-login-btn').textContent = "送信中";
 
     fetch(url + "?type=login", {
       method:"POST",
@@ -11,17 +11,16 @@ function login() {
         password: document.getElementById('password').value
       }),
     headers: { "Content-Type": "application/json" }
-    }).then(res => {
-      if(res == "success") {
-        document.querySelector('.popup-select-game').classList.add(success);
+    }).then(res => res.text())  // ← ここで文字列を取得
+    .then(text => {
+      if(text == "success") {
+        document.querySelector('.popup-select-game').classList.add('success');
         document.getElementById('commu-popup-content').innerHTML = "ログインしました。" 
           + new URLSearchParams(window.location.search).get('term') + "：document.getElementById('game-branch').value";
       } else {
         alert('支部、またはパスワードが違います。実施学期を間違えた場合は前のページに戻ってください。');
       }
-    }
-
-    )
+    })
 }
 function logout() {
    localStorage.clear('branch');
