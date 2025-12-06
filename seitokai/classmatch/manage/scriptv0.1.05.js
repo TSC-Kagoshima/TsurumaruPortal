@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   notice();
 });
-
+let lastUpdate = 0;  
 async function fetchNotice() {
   try {
     // Workers 側でキャッシュ更新があるか確認
