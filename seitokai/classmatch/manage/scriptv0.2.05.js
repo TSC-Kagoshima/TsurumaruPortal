@@ -75,32 +75,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const gameteam = localStorage.getItem('branch').slice(0, -2);
   const value = params.get('term'); 
 
-  if(gameteam) {
-    fetch(url + "?type=selectteam", {
-    method:"POST",
+if (gameteam) {
+  fetch(url + "?type=selectteam", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       term: value,
-      game: gameteam 
-    }),
-      headers: { "Content-Type": "application/json" }
+      game: gameteam
     })
-    .then(response => {
-      const res = response.json();
-      const allTeams = res.flatMap(l => [l.team1, l.team2, l.team3, l.team4]);
-      const selects = document.querySelectorAll('.game-team');
-      const option = [];
-       selects.forEach(select => {
-        serect.innerHTML = ""; // いったん初期化
-        allTeams.forEach(team => {
-          const option = document.createElement("option");
-          option.value = team;
-          option.textContent = team;
-          select.appendChild(option);
-        });
+  })
+  .then(response => response.json())
+  .then(res => {
+    const allTeams = res.flatMap(l => [l.team1, l.team2, l.team3, l.team4]);
+    const selects = document.querySelectorAll('.game-team');
+
+    selects.forEach(select => {
+      select.innerHTML = ""; // 初期化
+      allTeams.forEach(team => {
+        const option = document.createElement("option");
+        option.value = team;
+        option.textContent = team;
+        select.appendChild(option);
       });
-    })
-    .catch(err => console.error(err));
-  }
+    });
+  })
+  .catch(err => console.error(err));
+}
+
 });
 
 
