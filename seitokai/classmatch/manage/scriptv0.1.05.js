@@ -109,23 +109,19 @@ notice.forEach(row => {
 
 ////////notice既読機能付き
 
-// クリックで選択状態を切り替える
-document.querySelectorAll('.commulist').forEach(div => {
-    div.addEventListener('click', () => {
-        div.classList.toggle('selected');
-        const idToSend = {
-            readid : div.dataset.id
-        }; // data-id を取得
-        fetch(url + "type=readcommu", {
-            method:"POST",
-            body: JSON.stringify(idToSend),
-            headers: { "Content-Type": "application/json" }
-        }).then(response => response.json()) // ← テキストとして取得
-        console.log(response);
-    });
-});
+document.getElementById('commu-list').addEventListener('click', (e) => {
+    const div = e.target.closest('.commulist');
+    if (!div) return; // .commulist じゃなければ無視
 
-function scrollToBottom() {
-    const commuList = document.getElementById('commu-list');
-    commuList.scrollTop = commuList.scrollHeight;
-}
+    div.classList.toggle('selected');
+
+    const idToSend = { readid: div.dataset.id };
+    fetch(url + "?type=readcommu", {
+        method: "POST",
+        body: JSON.stringify(idToSend),
+        headers: { "Content-Type": "application/json" }
+    })
+    .then(res => res.json())
+    .then(response => console.log(response))
+    .catch(err => console.error(err));
+});
