@@ -100,9 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })
     .catch(err => console.error(err));
-}
-    })
-
   }
 });
 
