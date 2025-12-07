@@ -232,18 +232,8 @@ function  newConduction() {//////////////////システム新規作成
   .then(data => {  // ここは GAS からの配列
       console.log("getTerms data:", data); // <--- 追加
     const selects = document.querySelectorAll(".termSelect"); // NodeList
-    let getTerms;
-    if (Array.isArray(data)) {
-      getTerms = data;  // 本物の配列
-    } else if (typeof data === "string") {
-      getTerms = JSON.parse(data); // JSON文字列を配列に変換
-    } else {
-      // オブジェクトの場合は値だけ取り出す
-      getTerms = Object.values(data).filter(v => typeof v === "string");
-    }
-          console.log(getTerms); // 確認用
     selects.forEach(select => {  // 各 <select> 要素に対して
-      getTerms.forEach(name => {  // 配列をループ
+      data.data.forEach(name => {  // 配列をループ
         const option = document.createElement("option");
         option.value = name;
         option.textContent = name;
