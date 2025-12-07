@@ -22,8 +22,9 @@ async function login() {
       }      
   }    
 function loginSuccess() {
+      localStorage.setItem("branch", document.querySelector('game-branch').value);
       document.querySelector('.popup-select-game').classList.add('success');
-      localStorage.setItem()
+
       document.getElementById('commu-popup-content').innerHTML = "ログインしました。" 
         + new URLSearchParams(window.location.search).get('term') + "：" + document.getElementById('game-branch').value;
         loadGame();
