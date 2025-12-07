@@ -2,7 +2,7 @@
 <html lang="ja" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>Magnet - 鶴丸ポータル</title>
+        <title>クラスマッチ結果表示システム</title>
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta name="author" content="＠ 鶴丸高等学校令和７年度後期生徒会　TBC">
         <link rel="canonical" href="https://TsurumaruPortal.tsurubunsai.com">
@@ -24,14 +24,31 @@
                 <source src="img/bg.mp4" type="video/mp4">
             </video>
         </div>
-      <!-- ログイン促進UI -->
-  <div id="loginArea">
-    <img class="login-img" src="img/icon.PNG">
-    <p>このサイトは学校アカウント（@kago.ed.jp）専用です。</p>
-    <button id="login">Googleでログイン</button>
-  </div>
+      <div id="locked" >
+        <header>
+            <div class="header-title">
+                <div class="header-title-logo">
+                    <img src="img/icon.PNG">
+                </div>
+                <nav>
+                    <div class="navWrap">
+                            <ul class="navList">
+                                <li><a href="">各教科サポート教材</a></li>
+                                <li><a href="">TsurumaruBOX</a></li>
+                                <li><a href="">学校HP</a></li>
+                                <li><a href="">生徒会</a></li>
+                                <li><button id="logout">ログアウト</button></li>
+                            </ul>
+                        <div class="hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                        </div>
+                        </div>
+                </nav>
+            </div>
+        </header>
 
-  <script type="module" src="js/login.js">
   </script>
   <script src="js/script.js"></script>
     </body>

@@ -1,0 +1,321 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.bg-video {
+   position: fixed;    /* 画面に張り付ける */
+   top: 0;
+   left: 0;
+   width: 100dvw;
+   height: 100dvh;
+   object-fit: cover;  /* 画面いっぱいに切り抜き */
+   z-index: -2;        /* 後ろに回す */
+}
+
+.radius {
+   border-radius: 25px;
+}
+
+.filter {
+   background: rgba(255, 255, 255, 0.3);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.37);
+   border: 1px solid white;
+   transition: transform 0.3s ease-in-out ,box-shadow 0.3s ease-in-out;
+}
+.filter:hover {
+   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.37);
+   transform: scale(1.02);
+   transition: transform 0.3s ease-in-out ,box-shadow 0.3s ease-in-out;
+}
+
+/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+
+.header {
+   position: fixed;
+   width: 100dvw;
+   height: 6dvh;
+   background: rgba(255, 255, 255, 0.6);
+}
+
+.header .header-title {
+   font-family: "Sawarabi Gothic", sans-serif;
+   font-weight: 400;
+   font-size: 1.5dvw;
+   text-align: center;
+   transform: translate(0, -50%);
+   margin-top: 3dvh;
+}
+
+.box {
+   position: fixed;
+   width: 40dvw;
+   height: 60dvh;
+   margin: 20dvh 5dvw 20dvh 5dvw;
+}
+.select-term {
+   left: 0;
+}
+.create {
+   right: 0;
+}
+
+/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+
+.select-term-header {
+   font-family: "Sawarabi Gothic", sans-serif;
+   font-size: 2.5dvw;
+   filter: drop-shadow(0 0 6px rgb(0, 0, 0));
+   color: white;
+   text-align: center;
+   margin-top: 15%;
+}
+.select-term-header:hover {
+   transform: scale(1.02);
+   filter: drop-shadow(0 0 12px gold);
+   transition: filter 0.2s ease-in-out;
+}
+.select-term-wrapper {
+   width: 80%;
+   margin: 0 10% 0 10%;
+   height: 20%;
+}
+.select-term-wrapper select {
+   margin: 5% 5% 10% 10%;
+   width: 55%;
+   height: 30%;
+   border: 2px solid black;
+   border-radius: 10px;
+   font-size: 1.25em;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.37);
+}
+.select-term-wrapper select:hover {
+   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.37);
+   transition: box-shadow 0.2s ease-in-out;
+   transform: scale(1.02);
+}
+.select-term-wrapper option {
+   font-size: 1.25em;
+}
+
+.select-term-wrapper button {
+   width: 20%;
+   height: 30%;
+   margin-right: 0;
+   border-radius: 10px;
+   border: 2px solid gold;
+   font-weight: 600;
+   font-family: "Sawarabi Gothic", sans-serif;
+   color:black;
+
+   font-size: 1.25em;
+}
+.select-term-wrapper button:hover {
+   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.37);
+   transition: box-shadow 0.2s ease-in-out;
+   transform: scale(1.02);
+}
+
+.open-site-wrapper {
+   border-top: 2px solid white;
+   width: 80%;
+   margin: 0 10% 0 10%;
+}
+.view-site-header {
+   font-family: "Sawarabi Gothic", sans-serif;
+   font-size: 1.5dvw;
+   filter: drop-shadow(0 0 6px rgb(255, 255, 255));
+   color: rgb(0, 0, 0);
+   text-align: center;
+   margin-top: 5%;
+}
+.announce-site-header {
+   font-family: "Sawarabi Gothic", sans-serif;
+   font-size: 1.5dvw;
+   filter: drop-shadow(0 0 6px rgb(255, 255, 255));
+   color: rgb(0, 0, 0);
+   text-align: center;
+   margin-top: 5%;
+}
+.open-site-wrapper select {
+   margin: 0 5% 0 10%;
+   width: 55%;
+   height: 4dvh;
+   border: 2px solid black;
+   border-radius: 10px;
+   font-size: 1.25em;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.37);
+}
+.open-site-wrapper button {
+   width: 20%;
+   height: 4dvh;
+   margin-right: 0;
+   border-radius: 10px;
+   border: 2px solid gold;
+   font-weight: 600;
+   font-family: "Sawarabi Gothic", sans-serif;
+   font-size: 1.25em;
+   color:black;
+}
+.open-site-wrapper button:hover {
+   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.37);
+   transition: box-shadow 0.2s ease-in-out;
+   transform: scale(1.02);
+}
+
+/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+
+.create-header {
+   font-family: "Sawarabi Gothic", sans-serif;
+   font-size: 2.5dvw;
+   filter: drop-shadow(0 0 6px rgb(0, 0, 0));
+   color: white;
+   text-align: center;
+   margin-top: 15%;
+}
+.create-header.upward {
+   margin-top: 2%;
+   transition: margin-top 1s ease-in-out;
+}
+#create-initial-button {
+   width: 60%;
+   height: 15%;
+   margin: 10% 20% 0 20%;
+   border: 2px solid gold;
+   font-size: 1.5em;
+   font-family: "Sawarabi Gothic", sans-serif;
+   font-weight: 600;
+   color:black;
+
+   border-radius: 25px;
+}
+#create-initial-button:hover {
+   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.37);
+   transition: box-shadow 0.2s ease-in-out;
+   transform: scale(1.02);
+}
+#create-initial-button.invisible {
+   display: none;
+}
+
+/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+
+#view-create {
+   display: none;
+   overflow: hidden;        /* これ必須 */
+   height: 0;               /* 閉じた状態 */
+   opacity: 0;
+   transition: height 0.6s ease, opacity 0.4s ease;
+   width: 80%;
+   margin: 0 10% 0 10%;
+   overflow-y: auto;
+   overflow-x: hidden;
+   scrollbar-width: thick;
+   scrollbar-color: #ffffff transparent;
+}
+#view-create.show {
+   display: block;
+   opacity: 1;
+   height: 80%;
+   transition: height 1s ease-in-out, opacity 0.4s ease;
+}
+
+#conduct-year {
+   width: 60%;
+   height: 10%;
+   font-size: 1.2dvw;
+   border-radius: 15px;
+}
+#conduct-school-term {
+   width: 30%;
+   height: 10%;
+   font-size: 1.2dvw;
+   border-radius: 15px;
+}
+.league-team {
+   width: 60%;
+   margin: 10px auto;
+   font-size: 1.2dvw;
+   border-radius: 10px;
+   padding: 5px;
+}
+.create-team {
+   width: 15%;
+   font-size: 1.2dvw;
+   background: oklch(0.8 0.3 200);
+   border: 0px;
+   border-radius: 15px;
+}
+.delete-team {
+   width: 5%;
+   aspect-ratio: 1 / 1;
+   font-weight: 900;
+   color: white;
+   background: oklch(0.8 0.3 50);
+   border-radius: 15px;
+   border: 0px;
+   margin-left: 1%;
+}
+.game-type {
+   font-size: 1.5dvw;
+   font-family: "Sawarabi Gothic", sans-serif;
+   font-weight: 600;
+   text-align: center;
+   border-bottom: 1px solid white;
+}
+.create-league {
+   width: 40%;
+   height: 10%;
+   font-size: 1.2dvw;
+   font-weight: 600;
+   margin: 0 30% 0 30%;
+   border-radius: 15px;
+   background: oklch(0.8 0.3 90);
+   color: #ffffff;
+}
+#create-create .league-name {
+   font-size: 1.4dvw;
+}
+
+.create-conduction {
+   width: 100%;
+   height: 15%;
+   margin: 5% 0 5% 0;
+   font-size: 2dvw;
+   font-weight: 900;
+   background: oklch(0.8 0.3 170);
+}
+
+.create-conduction-popup {
+   position: fixed;
+   transform: translate(-50%,-50%);
+   top:60vh;
+   left: 50vw;
+   
+   width:40vw;
+   height:30vh;
+
+   transition: top 1s ease-in-out, opacity 1s ease-in-out;
+   opacity: 0;
+   z-index: -1;
+}
+.create-conduction-popup.send {
+   top:50vh;
+   left: 50vw;
+   transform: translate(-50%,-50%);
+
+   opacity: 1;
+   z-index: 1;
+   transition: top 1.2s ease-in-out, opacity 1.2s ease-in-out;
+}
+
+#create-conduction-popup-content {
+   position:absolute;
+   transform: translate(-50%,0);
+   top: 25%;
+   left: 50%;
+
+   font-size: 2vw;
+}

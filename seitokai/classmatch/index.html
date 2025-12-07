@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>鶴丸高等学校クラスマッチ登録システム</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="author" content="＠ 米倉優和">
+        <link rel="canonical" href="https://TsurumaruPortal.tsurubunsai.com">
+        <link rel="apple-touch-icon" sizes="180*180" href="../../img/icon.PNG">
+        <link rel="icon" type="image/png" sizes="32*32" href="../../img/icon.PNG">
+        <link rel="stylesheet" href="stylev0.0.6.css">
+        <meta name="google-site-verification" content="e1UuobzFF9_BlNGXJIVBrNezcE0ZH_AdN_AjTZc3_c8" />
+        <meta name="robots" content="noindex, nofollow">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="bg-video">
+            <video autoplay muted playsinline loop id="myVideo">
+                <source src="../../img/bg.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="header filter">
+            <p class="header-title">鶴丸高等学校クラスマッチシステム<small>v1.0.0</small></p>
+        </div>
+        <section class="box select-term radius filter"><!------------------------------------------システムに入るセクション------------------------------------------>
+            <div class="select-term-header">管理システムを開く</div>
+            <div class="select-term-wrapper">
+                <select class="filter termSelect" id="conduct-term" name="実施期間" required>
+                    <option value="" disabled selected>実施年・学期を選択</option>
+                </select>
+                <button id="select-term-submit-btn-system" class="filter">開く</button>
+            </div>
+            <div class="open-site-wrapper">
+                <div class="view-site-header">
+                    結果表示システムを開く
+                </div>
+                <select class="view-conduct-term filter termSelect" id="result-term" name="実施期間" required>
+                    <option value="" disabled selected>実施年・学期を選択</option>
+                </select>    
+                <button id="select-term-submit-btn-result" id="announce-term" class="filter">開く</button>     
+                <div class="announce-site-header">
+                    アナウンス用結果表示システムを開く
+                </div>
+                <select class="view-conduct-term filter termSelect" name="実施期間" required>
+                    <option value="" disabled selected>実施年・学期を選択</option>
+                </select>    
+                <button id="select-term-submit-btn-announce" class="filter">開く</button>             
+            </div>
+        </section>
+
+        <section class="box create radius filter"><!------------------------------------------新規作成セクション------------------------------------------>
+            <div class="create-header">新規作成</div>
+            <button id="create-initial-button" onclick="viewCreate()" class="filter">新規実施学期用システムを作成する</button>
+            <div id="view-create">
+                    <input class="filter"id="conduct-year" type="text" placeholder="開催年(西暦)" required>
+                    <select id="conduct-school-term" class="filter">
+                        <option value="" disabled selected >開催学期</option>
+                        <option value="前期">前期</option>
+                        <option value="後期">後期</option>
+                    </select>
+                    <p class="game-type">サッカー</p>
+                    <button class="create-league filter">新規リーグを作成</button>
+                    <p class="game-type">ドッジボール</p>
+                    <button class="create-league filter">新規リーグを作成</button>
+                    <p class="game-type">男子バスケットボール</p>
+                    <button class="create-league filter">新規リーグを作成</button>
+                    <p class="game-type">女子バスケットボール</p>
+                    <button class="create-league filter">新規リーグを作成</button>
+                    <p class="game-type">男子バレーボール</p>
+                    <button class="create-league filter">新規リーグを作成</button>
+                    <p class="game-type">女子バレーボール</p>
+                    <button class="create-league filter">新規リーグを作成</button>
+                    <p class="game-type">卓球</p>
+                    <button class="create-league filter">新規リーグを作成</button>
+                    <button class="create-conduction filter radius" onclick="newConduction()">新規作成</button>
+            </div>
+        </section>
+        <div class="create-conduction-popup filter radius">
+            <p id="create-conduction-popup-content">読み込み中</p>
+        </div>
+          <script src="./scriptv0.0.9.js"></script>                      
+    </body>
+    
+</html>

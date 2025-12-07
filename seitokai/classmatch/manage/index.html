@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>鶴丸高等学校クラスマッチ登録システム</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="author" content="＠ 米倉優和">
+        <link rel="canonical" href="https://TsurumaruPortal.tsurubunsai.com">
+        <link rel="apple-touch-icon" sizes="180*180" href="img/icon.PNG">
+        <link rel="icon" type="image/png" sizes="32*32" href="img/icon.PNG">
+        <link rel="stylesheet" href="stylev1.0.0.css">
+        <meta name="google-site-verification" content="e1UuobzFF9_BlNGXJIVBrNezcE0ZH_AdN_AjTZc3_c8" />
+        <meta name="robots" content="noindex, nofollow">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="bg-video">
+            <video autoplay muted playsinline loop id="myVideo">
+                <source src="../../../img/bg.mp4" type="video/mp4">
+            </video>
+
+        </div>
+        <div class="header filter">
+            <p class="header-title">鶴丸高等学校クラスマッチ管理システム<small>v1.0.0</small></p>
+            <button class="logout filter" onclick="logout()">ログアウト</button>
+        </div>
+        <!------------ログアウトポップアップ------------>
+        <button class="logout filter" onclick="document.querySelector('.logout-popup').classList.add('visible')">ログアウト</button>
+        <div class="logout-popup filter radius">
+            <p>本当にログアウトしますか？</p>
+            <button class="loguout-btn filter" onclick="logout()">はい</button>
+            <button class="no-logout-btn filter" onclick="document.querySelector('.logout-popup').classList.remove('visible')">いいえ</button>
+        </div>
+
+        <div class="popup-select-game filter radius">
+            <p id="conduct-term">実施学期</p>
+            <h1>所属する支部を選択してください</h1>
+            <select id="game-branch" class="filter radius" required>
+                <option value="" disabled selected>競技支部を選択</option>
+                <option value="サッカー支部">サッカー支部</option> 
+                <option value="ドッジボール支部">ドッジボール支部</option> 
+                <option value="卓球支部">卓球支部</option> 
+                <option value="バスケットボール支部">バスケットボール支部</option> 
+                <option value="バレーボール支部">バレーボール支部</option> 
+                <option value="放送部アナウンス局">放送部アナウンス支部</option> 
+                <option value="放送部技術局">放送部技術局/システム管理者</option> 
+            </select>
+            <input type="text" id="password" class="filter radius" placeholder="パスワードを入力してください"required>
+            <button id="send-login-btn" class="filter radius" onclick="login()">次へ</button>
+        </div>
+
+<!-------------------------試合結果登録セクション------------------------------------>
+        <section class="box result-wrapper filter radius">
+            <h1>試合結果登録</h1>
+            <select class="result-content game-type radius filter" id="game-type"name="種別" required>
+                <option value="" disabled selected>試合種別を選択</option>
+                <option value="予選">予選</option>
+                <option value="決勝">決勝</option>
+                <option value="準決勝">準決勝</option>
+                <option value="３位決定戦">３位決定戦</option>
+                <option value="決勝トーナメント">決勝トーナメント</option>  
+            </select>
+            <select class="result-content game-team radius filter" id="team1" name="チーム1" required>
+                <option value="" disabled selected>チーム1</option>
+            </select>
+            <input class="result-content game-team-point radius filter" id="team1point" type="number"placeholder="点数">
+             <select class="result-content game-team radius filter" id="team2" name="チーム2" required>
+                <option value="" disabled selected>チーム2</option>
+            </select>
+            <input class="result-content game-team-point radius filter" id="team2point" type="number" placeholder="点数">
+            <button class="result-content result-send-btn radius filter" onclick="sendGameResult()"name="送信">送信</button>
+        </section>
+
+<!-------------------------業務連絡セクション------------------------------------>
+        <section class="box sendcommunication filter radius">
+            <h1>業務連絡</h1>
+            <select class="commu-to commu-content radius filter" id="commu-to" name="宛先" required>
+                <option value="" disabled selected >連絡する相手</option>
+                <option value="生徒会本部">生徒会本部</option>
+                <option value="放送部技術局">放送部技術局</option>     
+                <option value="放送部アナウンス局">放送部アナウンス局</option>
+                <option value="バスケットボール支部">バスケットボール支部</option>
+                <option value="バレーボール支部">バレーボール支部</option>
+                <option value="サッカー支部">サッカー支部</option>
+                <option value="ドッジボール支部">ドッジボール支部</option>
+                <option value="卓球支部">卓球支部</option>
+            </select>
+            <select class="commu-type commu-content radius filter" id="commu-type" name="質問の種類" required>
+                <option value="" disabled selected >種別</option>
+                <option value="業務連絡">業務連絡</option>
+                <option value="技術関連の質問">技術関連の質問</option>     
+                <option value="運営関連の質問">運営関連の質問</option>
+                <option value="場内放送要請">場内放送要請</option>      
+            </select>
+            <textarea class="commu commu-content radius filter" id="commu-content" name="内容"placeholder="ここに文字を入力" rows="3"></textarea>
+            <button class="commu-content commu-send-btn radius filter" name="送信" onclick="sendmessage()">送信</button>
+
+        </section>
+            <div class="commu-popup radius filter">
+                <p id="commu-popup-content"></p>
+            </div>
+<!-------------------------業務連絡表示セクション------------------------------------>
+        <section class="box communication-wrapper filter radius">
+             <h1>業務連絡一覧</h1>
+            <p id="commu-list">読み込み中です...</p>
+        </section>
+        
+          <script src="./scriptv1.0.0.js"></script>                      
+    </body>
+    
+</html>
