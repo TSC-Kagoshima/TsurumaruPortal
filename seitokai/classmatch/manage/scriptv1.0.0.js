@@ -22,7 +22,7 @@ async function login() {
       }      
   }    
 function loginSuccess() {
-      localStorage.setItem("branch", document.querySelector('game-branch').value);
+      localStorage.setItem("branch", document.getElementById('game-branch').value);
       document.querySelector('.popup-select-game').classList.add('success');
 
       document.getElementById('commu-popup-content').innerHTML = "ログインしました。" 
