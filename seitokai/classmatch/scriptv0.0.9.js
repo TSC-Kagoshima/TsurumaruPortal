@@ -230,6 +230,7 @@ function  newConduction() {//////////////////システム新規作成
  fetch(url + "?type=getTerms")/////////////////実施年・学期を取得(めっちゃ時間かかったから壊れたらなく)
   .then(res => res.json())
   .then(data => {  // ここは GAS からの配列
+      console.log("getTerms data:", data); // <--- 追加
     const selects = document.querySelectorAll(".termSelect"); // NodeList
     let getTerms;
     if (Array.isArray(data)) {
