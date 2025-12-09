@@ -161,40 +161,39 @@ if (gameteam) {
 }
 
 let lastUpdate = 0;  
-async function fetchNotice() {
-  try {
-    // Workers 側でキャッシュ更新があるか確認
-    const res = await fetch(`${url}?type=getNotice&longpoll=true&lastUpdate=${lastUpdate}`);
-    const result = await res.json();
+const socket = new WebSocket(url);
 
-    // 更新があった場合だけ notice() を呼ぶ
-    if (result.updated) {
-      lastUpdate = result.timestamp; // タイムスタンプ更新
-      notice();                      // 既存の描画処理を呼び出す
-    }
-  } catch (err) {
-    console.error(err);
-  } finally {
-    // Long Polling ループ
-    fetchNotice();
+socket.onopen = () => {
+  console.log("connected!");
+};
+
+// Workers から push が来たときだけ UI 更新
+socket.onmessage = (event) => {
+  const result = JSON.parse(event.data);
+  if (result.updated) {
+    notice(result.data);  // ここで描画更新関数を呼ぶ
   }
-}
+};
 
-// ページロード時に開始
-fetchNotice();
-function notice() {
+socket.onerror = (e) => console.error("WS error", e);
 
- const params = new URLSearchParams(window.location.search);
- const value = params.get('term'); 
-    if (value !== null) { // term パラメータが存在する場合だけ
-        const termInput = document.getElementById('conduct-term');
-        if (termInput) {
-            termInput.textContent  = value; // input の値にセット
-        }
-    }
- fetch(url + "?type=getNotice")
-  .then(res => res.json())
-  .then(notice => {
+const socket = new WebSocket("wss://fetch.tsurumarubroadcast.workers.dev/");
+
+socket.onopen = () => {
+  console.log("connected!");
+};
+
+// Workers から push が来たときだけ UI 更新
+socket.onmessage = (event) => {
+  const result = JSON.parse(event.data);
+  if (result.updated) {
+    notice(result.data);  // ここで描画更新関数を呼ぶ
+  }
+};
+
+socket.onerror = (e) => console.error("WS error", e);
+
+function notice(notice) {
     console.log(notice);
     const rows = notice.data || notice;
     let html = "";
@@ -209,11 +208,10 @@ function notice() {
           font-weight:${cell.bold ? "bold" : "normal"};">${cell.value}</p>`
     });
     html += "</div>";
- });
     document.getElementById('commu-list').innerHTML = html;
   })
   .catch(err => console.error(err));
-}
+};
 
 ////////notice既読機能
 
