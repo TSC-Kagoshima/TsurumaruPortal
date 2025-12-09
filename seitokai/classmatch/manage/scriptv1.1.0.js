@@ -177,8 +177,6 @@ socket.onmessage = (event) => {
 
 socket.onerror = (e) => console.error("WS error", e);
 
-const socket = new WebSocket("wss://fetch.tsurumarubroadcast.workers.dev/");
-
 socket.onopen = () => {
   console.log("connected!");
 };
