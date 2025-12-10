@@ -1,4 +1,4 @@
-const url = "https://fetch.tsurumarubroadcast.workers.dev/";
+const url = "https://script.google.com/macros/s/AKfycbyKOV9-C98JCs4PHUxusbZnYbpLiv75agDCWnu1qqCel3PmOJ3Pe2g8SIcqp3-SAnLc/exec";
 
 async function login() {
     document.getElementById('send-login-btn').textContent = "送信中";
