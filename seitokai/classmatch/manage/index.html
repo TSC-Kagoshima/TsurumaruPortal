@@ -25,10 +25,9 @@
         </div>
         <div class="header filter">
             <p class="header-title">鶴丸高等学校クラスマッチ管理システム<small>v1.0.0</small></p>
-            <button class="logout filter" onclick="logout()">ログアウト</button>
+            <button class="logout filter" onclick="document.querySelector('.logout-popup').classList.add('visible')">ログアウト</button>
         </div>
         <!------------ログアウトポップアップ------------>
-        <button class="logout filter" onclick="document.querySelector('.logout-popup').classList.add('visible')">ログアウト</button>
         <div class="logout-popup filter radius">
             <p>本当にログアウトしますか？</p>
             <button class="loguout-btn filter" onclick="logout()">はい</button>
@@ -108,7 +107,8 @@
             <p id="commu-list">読み込み中です...</p>
         </section>
         
-          <script src="./scriptv1.1.0.js"></script>                      
+          <script src="js/scriptv1.1.0.js"></script>   
+          <script src="js/websocket.js"></script>                     
     </body>
     
 </html>
