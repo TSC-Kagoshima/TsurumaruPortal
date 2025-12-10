@@ -1,5 +1,4 @@
-// 1) API base (一回だけ宣言)
-const url = "https://fetch.tsurumarubroadcast.workers.dev/"; // for fetch
+
 const wsUrl = "wss://fetch.tsurumarubroadcast.workers.dev/ws"; // for websocket
 
 // 2) connect WS (single instance)
