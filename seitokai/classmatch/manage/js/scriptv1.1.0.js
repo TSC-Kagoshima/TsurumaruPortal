@@ -101,7 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   
-  notice();
 });
 function loadGame() {
     const params = new URLSearchParams(window.location.search);
