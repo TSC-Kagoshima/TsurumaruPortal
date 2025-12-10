@@ -29,12 +29,18 @@ function connectWS() {
         if (parsed && parsed.data) notice(parsed.data);
       } catch (e) {}
     }
+        if (msg.type === "init" || msg.type === "update") {
+      notice(msg.payload);
+      return;
+    }
   };
   ws.onerror = (e) => console.error("WS error", e);
   ws.onclose = () => {
     console.warn("WS closed, reconnecting in 2s");
     setTimeout(connectWS, 2000);
   };
+
+  
 }
 connectWS();
 
