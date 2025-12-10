@@ -55,6 +55,14 @@ function sendGameResult() {
     term: localStorage.getItem("term")
   };
 
+  // ---📡 WebSocket にも送信 ---
+  if (window.ws && window.ws.readyState === WebSocket.OPEN) {
+    window.ws.send(JSON.stringify({
+      type: "game-result",
+      data: result
+    }));
+  }
+
   fetch(url + "?type=sendresult", {
     method: "POST",
     body: JSON.stringify(result),
