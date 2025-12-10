@@ -105,37 +105,6 @@ if (gameteam) {
 }
 }
 
-let lastUpdate = 0;  
-const socket = new WebSocket(url);
-
-socket.onopen = () => {
-  console.log("connected!");
-};
-
-// Workers から push が来たときだけ UI 更新
-socket.onmessage = (event) => {
-  const result = JSON.parse(event.data);
-  if (result.updated) {
-    notice(result.data);  // ここで描画更新関数を呼ぶ
-  }
-};
-
-socket.onerror = (e) => console.error("WS error", e);
-
-socket.onopen = () => {
-  console.log("connected!");
-};
-
-// Workers から push が来たときだけ UI 更新
-socket.onmessage = (event) => {
-  const result = JSON.parse(event.data);
-  if (result.updated) {
-    notice(result.data);  // ここで描画更新関数を呼ぶ
-  }
-};
-
-socket.onerror = (e) => console.error("WS error", e);
-
 function notice(notice) {
     console.log(notice);
     const rows = notice.data || notice;
