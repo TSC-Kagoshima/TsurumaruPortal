@@ -26,6 +26,5 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelector('.logout').classList.add('.visible')
     }
   }
-  
-  notice();
+
 });
