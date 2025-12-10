@@ -5,6 +5,7 @@ async function login() {
 
     const res = await fetch(url + "?type=login", {
       method:"POST",
+      mode: "cors",
       body: JSON.stringify({
         term: new URLSearchParams(window.location.search).get('term'),
         branch: document.getElementById('game-branch').value,
@@ -49,6 +50,7 @@ function sendGameResult() {
 
   fetch(url + "?type=sendresult", {
     method: "POST",
+    mode: "cors",
     body: JSON.stringify(result),
     headers: { "Content-Type": "application/json" }
   }).then(response => response.json())
@@ -79,6 +81,7 @@ function loadGame() {
 if (gameteam) {
   fetch(url + "?type=selectteam", {
     method: "POST",
+    mode: "cors",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       term: value,
@@ -137,6 +140,7 @@ document.getElementById('commu-list').addEventListener('click', (e) => {
     console.log(idToSend);
     fetch(url + "?type=readcommu", {
         method: "POST",
+        mode: "cors",
         body: JSON.stringify(idToSend),
         headers: { "Content-Type": "application/json" }
     })
