@@ -15,17 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
 
 
-    const response = await fetch(url, {
-      method: "POST",
-      body: JSON.stringify({
-        term:document.params.get('term'),
-        action: "result"
-      })
-      headers: { "Content-Type": "application/json" }
-    });
 
-    // JSONに変換
-    const results = await response.json();
 
 // --- 競技選択 ---
 const sports = [...new Set(leagues.map(l=>l.sport))];
@@ -49,7 +39,18 @@ function createLayout(a) {
         document.body.appendChild(div);
     });
 }
-function renderLeagues(sportName){
+async function renderLeagues(sportName){
+      const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        term:document.params.get('term'),
+        action: "result"
+      })
+      headers: { "Content-Type": "application/json" }
+    });
+
+    // JSONに変換
+    const results = await response.json();
   const container = document.getElementById('leagues-container');
   if (!container) return;
 
