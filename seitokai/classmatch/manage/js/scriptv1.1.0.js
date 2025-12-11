@@ -108,8 +108,12 @@ if (gameteam) {
 }
 }
 
-function notice(notice) {
-    console.log(notice);
+function notice() {
+
+    const notice = fetch(url ,{
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+    })
     const rows = notice.data || notice;
     let html = "";
     const idMap = ["from", "to", "type", "content"];
