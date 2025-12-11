@@ -233,7 +233,7 @@ function  newConduction() {//////////////////システム新規作成
       console.log("getTerms data:", data); // <--- 追加
     const selects = document.querySelectorAll(".termSelect"); // NodeList
     selects.forEach(select => {  // 各 <select> 要素に対して
-      data.data.forEach(name => {  // 配列をループ
+      data.forEach(name => {  // 配列をループ
         const option = document.createElement("option");
         option.value = name;
         option.textContent = name;
