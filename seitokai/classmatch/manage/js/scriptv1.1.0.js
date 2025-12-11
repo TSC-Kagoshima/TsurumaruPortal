@@ -106,6 +106,7 @@ function notice() {
     method: "GET",
     headers: { "Content-Type": "application/json" },
     })
+    console.log(notice);
     const rows = notice.data || notice;
     let html = "";
     const idMap = ["from", "to", "type", "content"];
