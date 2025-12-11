@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 // -----------------------------------------
 async function getLeaguesData() {
   let leagues = localStorage.getItem('leaguesData');
-
+  if(!leagues || leagues === JSON.stringify({error: "unknown type"})) {
   const response = await fetch(url, {
     method: "POST",
     body: JSON.stringify({
@@ -37,8 +37,8 @@ async function getLeaguesData() {
   // キャッシュ保存
   localStorage.setItem('leaguesData', JSON.stringify(json));
   leagues = JSON.stringify(json);
-
   leagues = JSON.parse(leagues);
+  }
   console.log("leagues:", leagues);
   return leagues;
 }
