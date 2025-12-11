@@ -45,7 +45,7 @@ async function renderLeagues(sportName){
       body: JSON.stringify({
         term:document.params.get('term'),
         action: "result"
-      })
+      }),
       headers: { "Content-Type": "application/json" }
     });
 
