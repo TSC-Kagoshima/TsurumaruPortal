@@ -41,14 +41,6 @@ function sendGameResult() {
     term: localStorage.getItem("term")
   };
 
-  // ---📡 WebSocket にも送信 ---
-  if (window.ws && window.ws.readyState === WebSocket.OPEN) {
-    window.ws.send(JSON.stringify({
-      type: "game-result",
-      data: result
-    }));
-  }
-
   fetch(url + "?type=sendresult", {
     method: "POST",
     body: JSON.stringify(result),
@@ -131,9 +123,9 @@ function notice() {
   })
   .catch(err => console.error(err));
 };
+setInterval(notice, 15000);
 
 ////////notice既読機能
-
 document.getElementById('commu-list').addEventListener('click', (e) => {
     const div = e.target.closest('.commulist');
     if (!div) return; // .commulist じゃなければ無視
@@ -187,6 +179,7 @@ function sendmessage() {
   setTimeout(() => {
     document.querySelector('.commu-popup').classList.remove('send');
     commubutton = false;
+    notice();
   }, 3000);
 
 
