@@ -8,8 +8,7 @@ function loginSuccess() {
         document.querySelector('.logout').classList.add('visible');
 }
 function logout() {
-   localStorage.clear('branch');
-   window.location.href = "";
+   document.querySelector('.logout-popup').classList.add(".visible");
 }
 
 document.addEventListener('DOMContentLoaded', () => {
