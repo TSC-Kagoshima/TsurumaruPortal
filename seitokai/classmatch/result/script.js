@@ -1,3 +1,5 @@
+const url = "https://classmatch.tsurumarubroadcast.workers.dev/";
+
 document.addEventListener('DOMContentLoaded', () => {
   const leagues = localStorage.getItem('leaguesData');
   if(!leagues) {
@@ -16,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
+const leagues = localStorage.getItem('leaguesData');
 // --- 競技選択 ---
 const sports = [...new Set(leagues.map(l=>l.sport))];
 const select = document.getElementById("sport-select");
