@@ -16,7 +16,7 @@ async function login() {
 
     const json = await res.json();
       console.log(json);
-      if(json.result == "success") {
+      if(json == "success") {
           loginSuccess();
       } else {
         alert('支部、またはパスワードが違います。実施学期を間違えた場合は前のページに戻ってください。');
