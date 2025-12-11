@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 async function getLeaguesData() {
   let leagues = localStorage.getItem('leaguesData');
 
-  if (!leagues) {
     const response = await fetch(url, {
       method: "POST",
       body: JSON.stringify({
@@ -34,7 +33,7 @@ async function getLeaguesData() {
 
     localStorage.setItem('leaguesData', JSON.stringify(json));
     leagues = JSON.stringify(json);
-  }
+  
 
   leagues = JSON.parse(leagues);
   console.log("leagues:", leagues);
