@@ -44,13 +44,14 @@ async function getLeaguesData() {
 }
 
 
+
+async function createLayout(a) {
+  
 let leagues = await getLeaguesData();
 // --- 競技選択 ---
 const sports = [...new Set(leagues.map(l=>l.sport))];
 const select = document.getElementById("sport-select");
 sports.forEach(s=>select.appendChild(new Option(s,s)));
-
-function createLayout(a) {
     const positions = layout[a];
     if (!positions) return;
 
