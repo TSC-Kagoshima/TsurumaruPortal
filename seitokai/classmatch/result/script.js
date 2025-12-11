@@ -1,8 +1,8 @@
 const url = "https://classmatch.tsurumarubroadcast.workers.dev/";
-let leagues = null;  // ← グローバルで確保
+let leagues = null;  // ← グローバル
 
 document.addEventListener('DOMContentLoaded', async () => {
-  leagues = await getLeaguesData(); // ← ちゃんと待つ
+  leagues = await getLeaguesData(); // 取得してセット
 
   // --- 競技選択生成 ---
   const sports = [...new Set(leagues.map(l => l.sport))];
@@ -17,59 +17,38 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 
+// -----------------------------------------
+// データ取得
+// -----------------------------------------
 async function getLeaguesData() {
   let leagues = localStorage.getItem('leaguesData');
 
-    const response = await fetch(url, {
-      method: "POST",
-      body: JSON.stringify({
-        term: new URLSearchParams(location.search).get('term'),
-        action: "getGames"
-      }),
-      headers: { "Content-Type": "application/json" }
-    });
+  const response = await fetch(url, {
+    method: "POST",
+    body: JSON.stringify({
+      term: new URLSearchParams(location.search).get('term'),
+      action: "getGames"
+    }),
+    headers: { "Content-Type": "application/json" }
+  });
 
-    const json = await response.json();
+  const json = await response.json();
 
-    localStorage.setItem('leaguesData', JSON.stringify(json));
-    leagues = JSON.stringify(json);
-  
+  // キャッシュ保存
+  localStorage.setItem('leaguesData', JSON.stringify(json));
+  leagues = JSON.stringify(json);
 
   leagues = JSON.parse(leagues);
   console.log("leagues:", leagues);
-  return leagues; // ← JSON配列が戻ってくる
-}
-
-
-
-
-// -----------------------------------------
-// createLayout（async 必須）
-// -----------------------------------------
-async function createLayout(a) {
-  const leagues = await getLeaguesData();
-  const positions = layout[a];
-  if (!positions) return;
-
-  positions.forEach((pos, i) => {
-    const div = document.createElement("div");
-    const id = `${a}-${i + 1}`;
-    div.id = id;
-    div.classList.add("box");
-
-    div.style.top = pos.top;
-    div.style.left = pos.left;
-
-    document.body.appendChild(div);
-  });
+  return leagues;
 }
 
 
 
 // -----------------------------------------
-// リーグ描画（leagues を引数で受け取る）
+// リーグ描画（グローバル leagues を使う）
 // -----------------------------------------
-async function renderLeagues(sportName, leagues) {
+async function renderLeagues(sportName) {
 
   // 最新結果取得
   const response = await fetch(url, {
@@ -88,6 +67,7 @@ async function renderLeagues(sportName, leagues) {
 
   container.innerHTML = "";
 
+  // ← ここでグローバル leagues を使う
   const filtered = leagues.filter(l => l.sport === sportName);
   const totalLeagues = filtered.length;
 
@@ -119,6 +99,7 @@ async function renderLeagues(sportName, leagues) {
       );
     }
 
+    // --- チーム描画 ---
     league.teams.forEach((team, i) => {
       const teamDiv = document.createElement("div");
       const safeSport = league.sport.replace(/[^a-zA-Z0-9_-]/g, "");
@@ -155,10 +136,9 @@ async function renderLeagues(sportName, leagues) {
       div.appendChild(teamDiv);
     });
 
-    // 線
+    // --- 線 ---
     for (let i = 0; i < n; i++) {
       for (let j = i + 1; j < n; j++) {
-
         const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
         line.setAttribute("x1", positions[i].x + "%");
         line.setAttribute("y1", positions[i].y + "%");
