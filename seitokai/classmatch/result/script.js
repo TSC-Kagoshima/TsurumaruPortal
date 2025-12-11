@@ -1,6 +1,24 @@
 const url = "https://classmatch.tsurumarubroadcast.workers.dev/";
 
 document.addEventListener('DOMContentLoaded', async () => {
+  const leagues = await getLeaguesData();
+
+  console.log("Leagues:", leagues);
+
+  // --- 競技選択 ---
+  const sports = [...new Set(leagues.map(l => l.sport))];
+  const select = document.getElementById("sport-select");
+  sports.forEach(s => select.appendChild(new Option(s, s)));
+
+  // 初期表示
+  renderLeagues(sports[0]);
+
+  // 選択変更
+  select.addEventListener("change", () => renderLeagues(select.value));
+});
+
+
+async function getLeaguesData() {
   let leagues = localStorage.getItem('leaguesData');
 
   if (!leagues) {
@@ -21,14 +39,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // JSON文字列→配列へ
   leagues = JSON.parse(leagues);
-  init(leagues);
-});
+
+  return leagues;
+}
 
 
-
-
-let leagues = localStorage.getItem('leaguesData');
-leagues = JSON.parse(leagues); // ←これ必須
+let leagues = await getLeaguesData();
 // --- 競技選択 ---
 const sports = [...new Set(leagues.map(l=>l.sport))];
 const select = document.getElementById("sport-select");
