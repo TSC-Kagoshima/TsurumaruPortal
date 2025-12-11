@@ -159,11 +159,13 @@ function sendmessage() {
   type: document.getElementById('commu-type').value,
   content: document.getElementById('commu-content').value
  };
+  
   const fe = fetch(url + "?type=sendcommu", {
     method:"POST",
     body: JSON.stringify(commu),
     headers: { "Content-Type": "application/json" }
   }).then(response => response.json()) // ← テキストとして取得
+  console.log(commu);
   console.log(fe);
   document.getElementById('commu-to').value = "";
   document.getElementById('commu-type').value = "";
