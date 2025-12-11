@@ -61,13 +61,13 @@ async function renderLeagues(sportName) {
   });
 
   const results = await response.json();
+  const resultsExist = results.length > 0;  // ←★ 追加：結果があるかどうか
 
   const container = document.getElementById("leagues-container");
   if (!container) return;
 
   container.innerHTML = "";
 
-  // ← ここでグローバル leagues を使う
   const filtered = leagues.filter(l => l.sport === sportName);
   const totalLeagues = filtered.length;
 
@@ -106,19 +106,24 @@ async function renderLeagues(sportName) {
       const safeLeague = league.name.replace(/[^a-zA-Z0-9_-]/g, "");
       teamDiv.id = `box-${safeSport}-${safeLeague}-${i + 1}`;
 
-      const matches = results.filter(
-        r => r.sport === league.sport && (r.team1 === team || r.team2 === team)
-      );
+      // ★ 試合結果が空の時は 0 にしておく
+      let win = 0, lose = 0, scoreFor = 0, scoreAgainst = 0;
 
-      const win = matches.filter(m => m.winner === team).length;
-      const lose = matches.length - win;
+      if (resultsExist) {
+        const matches = results.filter(
+          r => r.sport === league.sport && (r.team1 === team || r.team2 === team)
+        );
 
-      const scoreFor = matches.reduce(
-        (sum, m) => sum + (m.team1 === team ? m.score1 : m.score2), 0
-      );
-      const scoreAgainst = matches.reduce(
-        (sum, m) => sum + (m.team1 === team ? m.score2 : m.score1), 0
-      );
+        win = matches.filter(m => m.winner === team).length;
+        lose = matches.length - win;
+
+        scoreFor = matches.reduce(
+          (sum, m) => sum + (m.team1 === team ? m.score1 : m.score2), 0
+        );
+        scoreAgainst = matches.reduce(
+          (sum, m) => sum + (m.team1 === team ? m.score2 : m.score1), 0
+        );
+      }
 
       teamDiv.classList.add("team", "filter");
       if (win > 0) teamDiv.classList.add("winner");
@@ -136,36 +141,39 @@ async function renderLeagues(sportName) {
       div.appendChild(teamDiv);
     });
 
-    // --- 線 ---
-    for (let i = 0; i < n; i++) {
-      for (let j = i + 1; j < n; j++) {
-        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-        line.setAttribute("x1", positions[i].x + "%");
-        line.setAttribute("y1", positions[i].y + "%");
-        line.setAttribute("x2", positions[j].x + "%");
-        line.setAttribute("y2", positions[j].y + "%");
-        line.setAttribute("stroke", "#999");
-        line.setAttribute("stroke-width", 2);
-        svg.appendChild(line);
 
-        const match = results.find(r =>
-          r.sport === league.sport &&
-          (
-            (r.team1 === league.teams[i] && r.team2 === league.teams[j]) ||
-            (r.team1 === league.teams[j] && r.team2 === league.teams[i])
-          )
-        );
+    // --- 線（★結果がある時だけ描画） ---
+    if (resultsExist) {
+      for (let i = 0; i < n; i++) {
+        for (let j = i + 1; j < n; j++) {
+          const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+          line.setAttribute("x1", positions[i].x + "%");
+          line.setAttribute("y1", positions[i].y + "%");
+          line.setAttribute("x2", positions[j].x + "%");
+          line.setAttribute("y2", positions[j].y + "%");
+          line.setAttribute("stroke", "#999");
+          line.setAttribute("stroke-width", 2);
+          svg.appendChild(line);
 
-        if (match) {
-          const scoreText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-          const x = (positions[i].x + positions[j].x) / 2 + "%";
-          const y = (positions[i].y + positions[j].y) / 2 + "%";
-          scoreText.setAttribute("x", x);
-          scoreText.setAttribute("y", y);
-          scoreText.setAttribute("text-anchor", "middle");
-          scoreText.setAttribute("dominant-baseline", "middle");
-          scoreText.textContent = `${match.score1}-${match.score2}`;
-          svg.appendChild(scoreText);
+          const match = results.find(r =>
+            r.sport === league.sport &&
+            (
+              (r.team1 === league.teams[i] && r.team2 === league.teams[j]) ||
+              (r.team1 === league.teams[j] && r.team2 === league.teams[i])
+            )
+          );
+
+          if (match) {
+            const scoreText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            const x = (positions[i].x + positions[j].x) / 2 + "%";
+            const y = (positions[i].y + positions[j].y) / 2 + "%";
+            scoreText.setAttribute("x", x);
+            scoreText.setAttribute("y", y);
+            scoreText.setAttribute("text-anchor", "middle");
+            scoreText.setAttribute("dominant-baseline", "middle");
+            scoreText.textContent = `${match.score1}-${match.score2}`;
+            svg.appendChild(scoreText);
+          }
         }
       }
     }
@@ -174,3 +182,4 @@ async function renderLeagues(sportName) {
     container.appendChild(div);
   });
 }
+
