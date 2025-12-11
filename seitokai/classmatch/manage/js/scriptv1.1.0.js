@@ -1,4 +1,4 @@
-const url = "https://fetch.tsurumarubroadcast.workers.dev/";
+const url = "https://classmatch.tsurumarubroadcast.workers.dev/";
 
 async function login() {
     document.getElementById('send-login-btn').textContent = "送信中";
@@ -6,6 +6,7 @@ async function login() {
     const res = await fetch(url + "?type=login", {
       method:"POST",
       body: JSON.stringify({
+        action: "login",
         term: new URLSearchParams(window.location.search).get('term'),
         branch: document.getElementById('game-branch').value,
         password: document.getElementById('password').value
@@ -21,53 +22,7 @@ async function login() {
         alert('支部、またはパスワードが違います。実施学期を間違えた場合は前のページに戻ってください。');
       }      
   }    
-function loginSuccess() {
-      localStorage.setItem("branch", document.getElementById('game-branch').value);
-      document.querySelector('.popup-select-game').classList.add('success');
 
-      document.getElementById('commu-popup-content').innerHTML = "ログインしました。" 
-        + new URLSearchParams(window.location.search).get('term') + "：" + document.getElementById('game-branch').value;
-        loadGame();
-        document.querySelector('.logout').classList.add('visible');
-}
-function logout() {
-   localStorage.clear('branch');
-   window.location.href = "";
-}
-
-let commubutton = false;//状態フラグ
-function sendmessage() {
-  if(commubutton == true) {
-    return;
-  }
-
-  commubutton = true;
-
-  const commu = {
-  afrom: localStorage.getItem("branch"),
-  to: document.getElementById('commu-to').value,
-  type: document.getElementById('commu-type').value,
-  content: document.getElementById('commu-content').value
- };
-  fetch(url + "?type=sendcommu", {
-    method:"POST",
-    body: JSON.stringify(commu),
-    headers: { "Content-Type": "application/json" }
-  }).then(response => response.json()) // ← テキストとして取得
-
-  document.getElementById('commu-to').value = "";
-  document.getElementById('commu-type').value = "";
-  document.getElementById('commu-content').value = "";
-
-  document.querySelector('.commu-popup').classList.add('send');
-  document.getElementById('commu-popup-content').innerHTML = "送信が完了しました。　相手：" + commu.to + "<br>種別：" + commu.type + "<br>内容：" + commu.content;
-  setTimeout(() => {
-    document.querySelector('.commu-popup').classList.remove('send');
-    commubutton = false;
-  }, 3000);
-
-
-}
 
 let sendbutton = false;
 function sendGameResult() {
@@ -76,6 +31,7 @@ function sendGameResult() {
   }
   commubutton = true;
   const result = {
+    action: "registerresult",
     game: localStorage.getItem("branch").slice(0,-2),
     type: document.getElementById('game-type').value,
     team1: document.getElementById('team1').value,
@@ -84,6 +40,14 @@ function sendGameResult() {
     point2: document.getElementById('team2point').value,
     term: localStorage.getItem("term")
   };
+
+  // ---📡 WebSocket にも送信 ---
+  if (window.ws && window.ws.readyState === WebSocket.OPEN) {
+    window.ws.send(JSON.stringify({
+      type: "game-result",
+      data: result
+    }));
+  }
 
   fetch(url + "?type=sendresult", {
     method: "POST",
@@ -108,23 +72,6 @@ function sendGameResult() {
 
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const params = new URLSearchParams(window.location.search);
-  const value = params.get('term'); 
-
-  const branchCache = localStorage.getItem('branch');
-  const termCache = localStorage.getItem('term')
-  if(branchCache) {
-    if(termCache == value) {    
-      const popup = document.querySelector('.popup-select-game');
-      popup.classList.add('success');
-      loadGame();
-      document.querySelector('.logout').classList.add('.visible')
-    }
-  }
-  
-  notice();
-});
 function loadGame() {
     const params = new URLSearchParams(window.location.search);
     const value = params.get('term'); 
@@ -132,10 +79,11 @@ function loadGame() {
 
 
 if (gameteam) {
-  fetch(url + "?type=selectteam", {
+    fetch(url + "?type=selectteam", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
+      action: "selectteam", // ← GAS 側で判定する用
       term: value,
       game: gameteam
     })
@@ -160,41 +108,7 @@ if (gameteam) {
 }
 }
 
-let lastUpdate = 0;  
-async function fetchNotice() {
-  try {
-    // Workers 側でキャッシュ更新があるか確認
-    const res = await fetch(`${url}?type=getNotice&longpoll=true&lastUpdate=${lastUpdate}`);
-    const result = await res.json();
-
-    // 更新があった場合だけ notice() を呼ぶ
-    if (result.updated) {
-      lastUpdate = result.timestamp; // タイムスタンプ更新
-      notice();                      // 既存の描画処理を呼び出す
-    }
-  } catch (err) {
-    console.error(err);
-  } finally {
-    // Long Polling ループ
-    fetchNotice();
-  }
-}
-
-// ページロード時に開始
-fetchNotice();
-function notice() {
-
- const params = new URLSearchParams(window.location.search);
- const value = params.get('term'); 
-    if (value !== null) { // term パラメータが存在する場合だけ
-        const termInput = document.getElementById('conduct-term');
-        if (termInput) {
-            termInput.textContent  = value; // input の値にセット
-        }
-    }
- fetch(url + "?type=getNotice")
-  .then(res => res.json())
-  .then(notice => {
+function notice(notice) {
     console.log(notice);
     const rows = notice.data || notice;
     let html = "";
@@ -209,11 +123,10 @@ function notice() {
           font-weight:${cell.bold ? "bold" : "normal"};">${cell.value}</p>`
     });
     html += "</div>";
- });
     document.getElementById('commu-list').innerHTML = html;
   })
   .catch(err => console.error(err));
-}
+};
 
 ////////notice既読機能
 
@@ -223,7 +136,10 @@ document.getElementById('commu-list').addEventListener('click', (e) => {
 
     div.classList.add('read');
 
-    const idToSend = { readid: div.dataset.id };
+    const idToSend = { 
+      action: "readcommu",
+      readid: div.dataset.id 
+    };
     console.log(idToSend);
     fetch(url + "?type=readcommu", {
         method: "POST",
@@ -234,3 +150,41 @@ document.getElementById('commu-list').addEventListener('click', (e) => {
     .then(response => console.log(response))
     .catch(err => console.error(err));
 });
+
+let commubutton = false;//状態フラグ
+function sendmessage() {
+  if(commubutton == true) {
+    return;
+  }
+
+  commubutton = true;
+
+  const commu = {
+  action: "sendcommu",
+  afrom: localStorage.getItem("branch"),
+  to: document.getElementById('commu-to').value,
+  type: document.getElementById('commu-type').value,
+  content: document.getElementById('commu-content').value
+ };
+  
+  const fe = fetch(url + "?type=sendcommu", {
+    method:"POST",
+    body: JSON.stringify(commu),
+    headers: { "Content-Type": "application/json" }
+  }).then(response => response.json()) // ← テキストとして取得
+  console.log(commu);
+  console.log(fe);
+  document.getElementById('commu-to').value = "";
+  document.getElementById('commu-type').value = "";
+  document.getElementById('commu-content').value = "";
+
+  document.querySelector('.commu-popup').classList.add('send');
+  document.getElementById('commu-popup-content').innerHTML = "送信が完了しました。　相手：" + commu.to + "<br>種別：" + commu.type + "<br>内容：" + commu.content;
+  setTimeout(() => {
+    document.querySelector('.commu-popup').classList.remove('send');
+    commubutton = false;
+  }, 3000);
+
+
+}
+
