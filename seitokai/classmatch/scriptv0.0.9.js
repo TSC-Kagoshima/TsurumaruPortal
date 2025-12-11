@@ -167,7 +167,7 @@ document.addEventListener('click', e => {//////////リーグとチームの追�
      e.target.remove(); 
   }
 });
-const url = "https://fetch.tsurumarubroadcast.workers.dev/";
+const url = "https://classmatch.tsurumarubroadcast.workers.dev/";
 
 function  newConduction() {//////////////////システム新規作成
   document.querySelector('.create-conduction-popup').classList.add('send');

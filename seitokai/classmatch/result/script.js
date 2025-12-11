@@ -1,44 +1,37 @@
-const leagues = [
-  { sport: "サッカー", name: "Aリーグ", teams: ["23R","26R","24R","28R"] },
-  { sport: "サッカー", name: "Bリーグ", teams: ["25R","18R","16R","13R"] },
-  { sport: "サッカー", name: "Cリーグ", teams: ["22R","15R","11R","21R"] },
-  { sport: "サッカー", name: "Dリーグ", teams: ["17R","27R","14R","12R"] },
-  { sport: "ドッジボール", name: "Aリーグ", teams: ["18R","12R","14R"] },
-  { sport: "ドッジボール", name: "Bリーグ", teams: ["21R","22R","17R","13R"] },
-  { sport: "ドッジボール", name: "Cリーグ", teams: ["26R","15R","24R","27R"] },
-  { sport: "男子バスケットボール", name: "Aリーグ", teams: ["15R","13R","12R"] },
-  { sport: "男子バスケットボール", name: "Bリーグ", teams: ["21R","23R","26R"] },
-  { sport: "男子バスケットボール", name: "Cリーグ", teams: ["22R","16R","18R","14R"] },
-  { sport: "男子バスケットボール", name: "Dリーグ", teams: ["17R","11R","27R","24R"] },
-  { sport: "女子バスケットボール", name: "Aリーグ", teams: ["25R-A","26R","22R"] },
-  { sport: "女子バスケットボール", name: "Bリーグ", teams: ["13R","25R-B","15R"] },
-  { sport: "女子バスケットボール", name: "Cリーグ", teams: ["11R","16R-A","27R","12R"] },
-  { sport: "女子バスケットボール", name: "Dリーグ", teams: ["18R","16R-B","28R","23R"] },
-  { sport: "男子バレーボール", name: "Aリーグ", teams: ["15R","11R","16R"] },
-  { sport: "男子バレーボール", name: "Bリーグ", teams: ["17R","24R","25R"] },
-  { sport: "男子バレーボール", name: "Cリーグ", teams: ["28R-A","21R","26R"] },
-  { sport: "男子バレーボール", name: "Dリーグ", teams: ["13R","28R-B","27R","18R"] },
-  { sport: "女子バレーボール", name: "Aリーグ", teams: ["23R-A","16R","11R-A"] },
-  { sport: "女子バレーボール", name: "Bリーグ", teams: ["23R-B","11R-B","14R"] },
-  { sport: "女子バレーボール", name: "Cリーグ", teams: ["21R-A","12R","18R"] },
-  { sport: "女子バレーボール", name: "Dリーグ", teams: ["13R","28R","21R-B","26R"] },
-  { sport: "女子バレーボール", name: "Eリーグ", teams: ["25R","22R","24R","17R"] },
-  { sport: "卓球", name: "Aリーグ", teams: ["14R","24R","28R"] },
-  { sport: "卓球", name: "Bリーグ", teams: ["22R","13R","17R"] },
-  { sport: "卓球", name: "Cリーグ", teams: ["11R","23R","25R","c"] }
-];
+document.addEventListener('DOMContentLoaded', () => {
+  const leagues = localStorage.getItem('leaguesData');
+  if(!leagues) {
+    const res = fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        term:document.params.get('term'),
+        action:"getGames"
+      }),
+      headers: { "Content-Type": "application/json" }
+      })
+      localStorage.setItem('leagueData',res.json());
+  }
+})
+  
 
-// --- 試合結果例 ---
-const results = [
-  { sport: "サッカー", team1: "23R", score1: 1, team2: "26R", score2: 2, winner: "26R" },
-  { sport: "女子バレーボール", team1: "23R-A", score1: 2, team2: "11R-A", score2: 0, winner: "23R-A" },
-  { sport: "卓球", team1: "14R", score1: 2, team2: "24R", score2: 1, winner: "14R" }
-];
+
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        term:document.params.get('term'),
+        action: "result"
+      })
+      headers: { "Content-Type": "application/json" }
+    });
+
+    // JSONに変換
+    const results = await response.json();
 
 // --- 競技選択 ---
 const sports = [...new Set(leagues.map(l=>l.sport))];
 const select = document.getElementById("sport-select");
 sports.forEach(s=>select.appendChild(new Option(s,s)));
+
 function createLayout(a) {
     const positions = layout[a];
     if (!positions) return;
