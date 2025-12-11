@@ -6,6 +6,7 @@ async function login() {
     const res = await fetch(url + "?type=login", {
       method:"POST",
       body: JSON.stringify({
+        action: "login",
         term: new URLSearchParams(window.location.search).get('term'),
         branch: document.getElementById('game-branch').value,
         password: document.getElementById('password').value
@@ -30,6 +31,7 @@ function sendGameResult() {
   }
   commubutton = true;
   const result = {
+    action: "registerresult",
     game: localStorage.getItem("branch").slice(0,-2),
     type: document.getElementById('game-type').value,
     team1: document.getElementById('team1').value,
@@ -77,10 +79,11 @@ function loadGame() {
 
 
 if (gameteam) {
-  fetch(url + "?type=selectteam", {
+    fetch(url + "?type=selectteam", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
+      action: "selectteam", // ← GAS 側で判定する用
       term: value,
       game: gameteam
     })
@@ -133,7 +136,10 @@ document.getElementById('commu-list').addEventListener('click', (e) => {
 
     div.classList.add('read');
 
-    const idToSend = { readid: div.dataset.id };
+    const idToSend = { 
+      action: "readcommu",
+      readid: div.dataset.id 
+    };
     console.log(idToSend);
     fetch(url + "?type=readcommu", {
         method: "POST",
@@ -154,6 +160,7 @@ function sendmessage() {
   commubutton = true;
 
   const commu = {
+  action: "sendcommu",
   afrom: localStorage.getItem("branch"),
   to: document.getElementById('commu-to').value,
   type: document.getElementById('commu-type').value,
