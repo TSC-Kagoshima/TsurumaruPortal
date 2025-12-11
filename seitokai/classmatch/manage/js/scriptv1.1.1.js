@@ -16,7 +16,7 @@ async function login() {
 
     const json = await res.json();
       console.log(json);
-      if(json.result == "success") {
+      if(json == "success") {
           loginSuccess();
       } else {
         alert('支部、またはパスワードが違います。実施学期を間違えた場合は前のページに戻ってください。');
@@ -40,14 +40,6 @@ function sendGameResult() {
     point2: document.getElementById('team2point').value,
     term: localStorage.getItem("term")
   };
-
-  // ---📡 WebSocket にも送信 ---
-  if (window.ws && window.ws.readyState === WebSocket.OPEN) {
-    window.ws.send(JSON.stringify({
-      type: "game-result",
-      data: result
-    }));
-  }
 
   fetch(url + "?type=sendresult", {
     method: "POST",
@@ -108,7 +100,14 @@ if (gameteam) {
 }
 }
 
-function notice(notice) {
+async function notice() {
+    const response = await fetch(url + "?type=notice", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" }
+    });
+
+    // JSONに変換
+    const notice = await response.json();
     console.log(notice);
     const rows = notice.data || notice;
     let html = "";
@@ -127,9 +126,9 @@ function notice(notice) {
   })
   .catch(err => console.error(err));
 };
+setInterval(notice, 15000);
 
 ////////notice既読機能
-
 document.getElementById('commu-list').addEventListener('click', (e) => {
     const div = e.target.closest('.commulist');
     if (!div) return; // .commulist じゃなければ無視
@@ -183,6 +182,7 @@ function sendmessage() {
   setTimeout(() => {
     document.querySelector('.commu-popup').classList.remove('send');
     commubutton = false;
+    notice();
   }, 3000);
 
 
