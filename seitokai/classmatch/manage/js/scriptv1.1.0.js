@@ -1,4 +1,4 @@
-const url = "https://fetch.tsurumarubroadcast.workers.dev/";
+const url = "https://classmatch.tsurumarubroadcast.workers.dev/";
 
 async function login() {
     document.getElementById('send-login-btn').textContent = "送信中";
