@@ -101,11 +101,9 @@ if (gameteam) {
 }
 
 async function notice() {
-    const response = await fetch(url, {
+    const response = await fetch(url + "?type=notice", {
       method: "GET",
-      headers: { "Content-Type": "application/json" },
-      body: {action: "notice"
-      }
+      headers: { "Content-Type": "application/json" }
     });
 
     // JSONに変換
