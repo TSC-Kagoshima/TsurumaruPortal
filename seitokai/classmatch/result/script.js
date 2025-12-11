@@ -40,7 +40,7 @@ async function getLeaguesData() {
   leagues = JSON.parse(leagues);
   }
   console.log("leagues:", leagues);
-  return leagues;
+  return leagues.legues;
 }
 
 
