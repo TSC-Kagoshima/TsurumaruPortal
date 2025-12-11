@@ -1,54 +1,27 @@
 <!DOCTYPE html>
-<html lang="ja" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>クラスマッチ結果表示システム</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <meta name="author" content="＠ 鶴丸高等学校令和７年度後期生徒会　TBC">
-        <link rel="canonical" href="https://TsurumaruPortal.tsurubunsai.com">
-        <link rel="apple-touch-icon" sizes="180*180" href="img/icon.PNG">
-        <link rel="icon" type="image/png" sizes="32*32" href="img/icon.PNG">
-        <link rel="manifest" href="/manifest.json">
-        <link rel="stylesheet" href="css/style.css">
-        <meta name="google-site-verification" content="e1UuobzFF9_BlNGXJIVBrNezcE0ZH_AdN_AjTZc3_c8" />
-        <meta name="robots" content="noindex, nofollow">
-    </head>
-
-    <body>
-        <section class="loading">
-
-        </section>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>競技別ビジュアルリーグ表</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+<body>
         <div class="bg-video">
             <video autoplay muted playsinline loop id="myVideo">
-                <source src="img/bg.mp4" type="video/mp4">
+                <source src="./bg.mp4" type="video/mp4">
             </video>
-        </div>
-      <div id="locked" >
-        <header>
-            <div class="header-title">
-                <div class="header-title-logo">
-                    <img src="img/icon.PNG">
-                </div>
-                <nav>
-                    <div class="navWrap">
-                            <ul class="navList">
-                                <li><a href="">各教科サポート教材</a></li>
-                                <li><a href="">TsurumaruBOX</a></li>
-                                <li><a href="">学校HP</a></li>
-                                <li><a href="">生徒会</a></li>
-                                <li><button id="logout">ログアウト</button></li>
-                            </ul>
-                        <div class="hamburger">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                        </div>
-                        </div>
-                </nav>
-            </div>
-        </header>
 
-  </script>
-  <script src="js/script.js"></script>
-    </body>
+        </div>
+<select class="filter radius" id="sport-select"></select>
+<div id="leagues-container"></div>
+<div class="time-table">
+  <div class="time-table-inner">
+  <img src="令和7年度後期タイムテーブル.pdf.svg">
+</div>
+</div>
+<script src="./script.js">
+// --- リーグデータ ---
+
+</script>
+</body>
 </html>

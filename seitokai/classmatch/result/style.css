@@ -31,13 +31,153 @@ body {
    transform: scale(1.02);
    transition: transform 0.3s ease-in-out ,box-shadow 0.3s ease-in-out;
 }
+  #sport-select { 
+    position: fixed;
+    top:6vh;
+    left:10vw;
 
-/*ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー*/
+    width:50vw;
+    height:7%;
+    font-size:2vw;
+    padding:5px;
+  }
+  .league { 
+    margin-bottom: 50px; 
+    position: relative; 
+    width: 20vw; 
+    height: 30vh; 
+    border: 1px solid #ccc; 
+  }
+
+  .league h2 { 
+    text-align: center; 
+    margin-bottom: 10px; 
+  }
+  .team {
+    width: 80px; 
+    height: 40px; 
+    background: #88c; 
+    color: #fff; 
+    position: absolute;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    border-radius: 6px;
+    transition: 0.3s;
+    z-index:5;
+  }
+  .team.winner { 
+    background: #f39c12;
+  }
+  .info { 
+    font-size: 12px; 
+    text-align: center; 
+    color: #000; 
+  }
+  svg { 
+    position: absolute; 
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%; 
+    pointer-events: none; }
+  line { 
+    stroke: #000; 
+    stroke-width: 2; 
+  }
+  text { 
+    font-size: 12px; 
+    fill: #000; 
+  }
 
 .box {
     position: fixed;
-    width: 20vw;
-    height: 20vw;
+    width: 18vw;
+    height: 18vw;
     background: #66aaff;
     border-radius: 10px;
 }
+#leagues-container div{
+  position:absolute;
+}
+
+.time-table {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 35vw;
+  height: 100vh;
+  overflow: hidden; /* 内部スクロールは inner に任せる */
+  border-left: 1px solid #ccc;
+  background: #fff;
+}
+
+.time-table-inner {
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* スクロール可能に */
+  cursor: grab;
+}
+
+.time-table-inner img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  transform-origin: top left; /* 拡大縮小の基準 */
+  transition: transform 0.1s ease;
+}
+/* ========== 3リーグ配置（3つ）========== */
+.lg-1-of-3 {
+    top: 15vh;
+    left: 25vw;
+}
+.lg-2-of-3 {
+    top: 55vh;
+    left: 10vw;
+}
+.lg-3-of-3 {
+    top: 55vh;
+    left: 40vw;
+}
+
+/* ========== 4リーグ配置（2×2）========== */
+.lg-1-of-4 {
+    top: 15vh;
+    left: 10vw;
+}
+.lg-2-of-4 {
+    top: 15vh;
+    left: 40vw;
+}
+.lg-3-of-4 {
+    top: 55vh;
+    left: 10vw;
+}
+.lg-4-of-4 {
+    top: 55vh;
+    left: 40vw;
+}
+
+/* ========== 5リーグ配置（3上・2下）========== */
+.lg-1-of-5 {
+    top: 15vh;
+    left: 10vw;
+}
+.lg-2-of-5 {
+    top: 15vh;
+    left: 40vw;
+}
+.lg-3-of-5 {
+    top: 55vh;
+    left: 2.5vw;
+}
+.lg-4-of-5 {
+    top: 55vh;
+    left: 25vw;
+}
+.lg-5-of-5 {
+    top: 55vh;
+    left: 47.5vw;
+}
+
