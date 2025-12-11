@@ -101,11 +101,13 @@ if (gameteam) {
 }
 
 function notice() {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
 
-    const notice = fetch(url ,{
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-    })
+    // JSONに変換
+    const notice = await response.json();
     console.log(notice);
     const rows = notice.data || notice;
     let html = "";
