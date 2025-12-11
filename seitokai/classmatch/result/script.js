@@ -6,12 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const res = fetch(url, {
       method: "POST",
       body: JSON.stringify({
-        term:document.params.get('term'),
+        term: new URLSearchParams(location.search).get("term"),
         action:"getGames"
       }),
       headers: { "Content-Type": "application/json" }
       })
-      localStorage.setItem('leagueData',res.json());
+      localStorage.setItem('leaguesData',res.json());
   }
 })
   
