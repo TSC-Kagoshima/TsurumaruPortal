@@ -104,7 +104,7 @@ async function notice() {
     const response = await fetch(url, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
-      bofy: {action: "notice"
+      body: {action: "notice"
       }
     });
 
