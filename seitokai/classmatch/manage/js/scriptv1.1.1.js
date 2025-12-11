@@ -69,7 +69,7 @@ function loadGame() {
     const value = params.get('term'); 
     const gameteam = localStorage.getItem('branch').slice(0, -2);
 
-
+  console.log(gameteam);
 if (gameteam) {
     fetch(url + "?type=selectteam", {
     method: "POST",
