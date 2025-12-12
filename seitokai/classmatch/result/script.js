@@ -71,7 +71,7 @@ async function renderLeagues(sportName) {
     headers: { "Content-Type": "application/json" }
   });
 
-  const results = await response.json();
+  let results = await response.json();
  
 // ★ 文字列になっている場合はパース
 if (typeof results === "string") {
