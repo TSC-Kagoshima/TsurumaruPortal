@@ -72,6 +72,22 @@ async function renderLeagues(sportName) {
   });
 
   const results = await response.json();
+ 
+// ★ 文字列になっている場合はパース
+if (typeof results === "string") {
+  try {
+    results = JSON.parse(results);
+  } catch (e) {
+    console.error("results JSON parse error:", e, results);
+    results = [];
+  }
+}
+
+// ★ 配列でない場合は空配列
+if (!Array.isArray(results)) {
+  console.warn("results is not an array, resetting to []", results);
+  results = [];
+}
   const resultsExist = results.length > 0;  // ←★ 追加：結果があるかどうか
 console.log("results:", results);
 console.log("Array?", Array.isArray(results));
