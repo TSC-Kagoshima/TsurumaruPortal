@@ -1,7 +1,8 @@
 function loginSuccess() {
+    const params = new URLSearchParams(window.location.search);
       localStorage.setItem("branch", document.getElementById('game-branch').value);
       document.querySelector('.popup-select-game').classList.add('success');
-
+      localStorage.setItem("term",params.get('term'));
       document.getElementById('commu-popup-content').innerHTML = "ログインしました。" 
         + new URLSearchParams(window.location.search).get('term') + "：" + document.getElementById('game-branch').value;
         loadGame();
