@@ -71,7 +71,8 @@ async function renderLeagues(sportName) {
 
   const results = await response.json();
   const resultsExist = results.length > 0;  // ←★ 追加：結果があるかどうか
-
+console.log("results:", results);
+console.log("Array?", Array.isArray(results));
   const container = document.getElementById("leagues-container");
   if (!container) return;
 
