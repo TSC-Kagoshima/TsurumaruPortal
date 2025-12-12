@@ -8,7 +8,7 @@
         <link rel="canonical" href="https://TsurumaruPortal.tsurubunsai.com">
         <link rel="apple-touch-icon" sizes="180*180" href="img/icon.PNG">
         <link rel="icon" type="image/png" sizes="32*32" href="img/icon.PNG">
-        <link rel="stylesheet" href="css/stylev1.0.2.css">
+        <link rel="stylesheet" href="css/stylev1.0.3.css">
         <link rel="stylesheet" href="css/body.css">
         <link rel="stylesheet" href="css/login-out.css">
         <link rel="stylesheet" href="css/result.css">
@@ -65,6 +65,11 @@
                 <option value="３位決定戦">３位決定戦</option>
                 <option value="決勝トーナメント">決勝トーナメント</option>  
             </select>
+           <select class="result-content game-gender radius filter" id="game-gender"name="種別" required>
+                <option value="" disabled selected>性別</option>
+                <option value="男子">男子</option>
+                <option value="女子">女子</option>
+            </select>
             <select class="result-content game-team radius filter" id="team1" name="チーム1" required>
                 <option value="" disabled selected>チーム1</option>
             </select>
@@ -110,7 +115,7 @@
             <p id="commu-list">読み込み中です...</p>
         </section>
         
-          <script src="js/scriptv1.1.1.js"></script>   
+          <script src="js/scriptv1.1.3.js"></script>   
           <script src="js/websocket.js"></script>    
           <script src="js/front1.js"></script>                 
     </body>

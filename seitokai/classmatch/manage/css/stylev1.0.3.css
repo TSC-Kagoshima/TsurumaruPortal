@@ -53,8 +53,12 @@
    font-size: 1.2dvw;
 }
 .game-type {
-   width: 70%;
+   width: 50%;
    margin-left: 15%;
+}
+.game-gender {
+   width:15%;
+   margin-left:2%;
 }
 .game-team {
    width: 45%;

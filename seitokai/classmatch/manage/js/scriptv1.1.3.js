@@ -30,10 +30,12 @@ function sendGameResult() {
     return;
   }
   commubutton = true;
+  const gender = document.getElementById('game-gender').value;
   const result = {
     action: "registerresult",
     game: localStorage.getItem("branch").slice(0,-2),
     type: document.getElementById('game-type').value,
+    gender: gender,
     team1: document.getElementById('team1').value,
     point1: document.getElementById('team1point').value,
     team2: document.getElementById('team2').value,
