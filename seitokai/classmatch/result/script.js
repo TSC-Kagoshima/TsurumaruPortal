@@ -21,27 +21,36 @@ document.addEventListener('DOMContentLoaded', async () => {
 // データ取得
 // -----------------------------------------
 async function getLeaguesData() {
-  let leagues = localStorage.getItem('leaguesData');
-  if(!leagues || leagues === JSON.stringify({error: "unknown type"})) {
-  const response = await fetch(url, {
-    method: "POST",
-    body: JSON.stringify({
-      term: new URLSearchParams(location.search).get('term'),
-      action: "getGames"
-    }),
-    headers: { "Content-Type": "application/json" }
-  });
+  let leaguesStr = localStorage.getItem('leaguesData');
+  let leagues;
 
-  const json = await response.json();
+  if (!leaguesStr || leaguesStr === JSON.stringify({ error: "unknown type" })) {
 
-  // キャッシュ保存
-  localStorage.setItem('leaguesData', JSON.stringify(json));
-  leagues = JSON.stringify(json);
-  leagues = JSON.parse(leagues);
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        term: new URLSearchParams(location.search).get('term'),
+        action: "getGames"
+      }),
+      headers: { "Content-Type": "application/json" }
+    });
+
+    const json = await response.json();
+
+    // localStorage 保存
+    localStorage.setItem('leaguesData', JSON.stringify(json));
+
+    leagues = json;  // ← もう JSON.parse しなくてOK
+  } else {
+
+    leagues = JSON.parse(leaguesStr);  // ← ストレージから取る場合だけ解析する
   }
+
   console.log("leagues:", leagues);
-  return leagues;
+
+  return leagues;  // ← ここは配列なので map できる
 }
+
 
 
 
