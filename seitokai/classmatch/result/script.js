@@ -2,6 +2,8 @@ const url = "https://classmatch.tsurumarubroadcast.workers.dev/";
 let leagues = null;  // ← グローバル
 
 document.addEventListener('DOMContentLoaded', async () => {
+  localStorage.removeItem("resultsData");
+localStorage.removeItem("leaguesData");
   leagues = await getLeaguesData(); // 取得してセット
 
   // --- 競技選択生成 ---
