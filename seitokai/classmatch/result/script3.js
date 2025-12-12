@@ -188,13 +188,15 @@ if (n === 4) {
           line.setAttribute("stroke-width", 2);
           svg.appendChild(line);
 
-          const match = results.find(r =>
-            r.sport === league.sport &&
-            (
-              (r.team1 === league.teams[i] && r.team2 === league.teams[j]) ||
-              (r.team1 === league.teams[j] && r.team2 === league.teams[i])
-            )
-          );
+        // 予選だけ対象
+      const match = results.find(r =>
+        r.type === "予選" &&
+        r.sport === league.sport &&
+        (
+          (r.team1 === league.teams[i] && r.team2 === league.teams[j]) ||
+          (r.team1 === league.teams[j] && r.team2 === league.teams[i])
+        )
+      );
 
           if (match) {
             const scoreText = document.createElementNS("http://www.w3.org/2000/svg", "text");
