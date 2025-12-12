@@ -142,7 +142,7 @@
    margin:1% 5% 1% 5%;
 }
 .commulist.read {
-   background: oklch(88.43% 0.06206 34.321);
+   background: oklch(94.802% 0.21855 117.013);
 }
 .commulist-from , .commulist-to , .commulist-type, .commulist-check{
    display: inline-flex;
