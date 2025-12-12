@@ -2,6 +2,8 @@ const url = "https://classmatch.tsurumarubroadcast.workers.dev/";
 let leagues = null;  // ← グローバル
 
 document.addEventListener('DOMContentLoaded', async () => {
+  localStorage.removeItem("resultsData");
+localStorage.removeItem("leaguesData");
   leagues = await getLeaguesData(); // 取得してセット
 
   // --- 競技選択生成 ---
@@ -69,9 +71,26 @@ async function renderLeagues(sportName) {
     headers: { "Content-Type": "application/json" }
   });
 
-  const results = await response.json();
-  const resultsExist = results.length > 0;  // ←★ 追加：結果があるかどうか
+  let results = await response.json();
+ 
+// ★ 文字列になっている場合はパース
+if (typeof results === "string") {
+  try {
+    results = JSON.parse(results);
+  } catch (e) {
+    console.error("results JSON parse error:", e, results);
+    results = [];
+  }
+}
 
+// ★ 配列でない場合は空配列
+if (!Array.isArray(results)) {
+  console.warn("results is not an array, resetting to []", results);
+  results = [];
+}
+  const resultsExist = results.length > 0;  // ←★ 追加：結果があるかどうか
+console.log("results:", results);
+console.log("Array?", Array.isArray(results));
   const container = document.getElementById("leagues-container");
   if (!container) return;
 
@@ -93,20 +112,25 @@ async function renderLeagues(sportName) {
     svg.style.top = "0";
     svg.style.left = "0";
 
-    const positions = [];
-    const n = league.teams.length;
+const teams = league.teams.filter(t => t && t.trim() !== "");
+const n = teams.length;
+let positions = [];
 
-    if (n === 4) {
-      positions.push(
-        { x: 20, y: 30 }, { x: 80, y: 30 },
-        { x: 20, y: 80 }, { x: 80, y: 80 }
-      );
-    } else if (n === 3) {
-      positions.push(
-        { x: 50, y: 30 },
-        { x: 20, y: 80 }, { x: 80, y: 80 }
-      );
-    }
+if (n === 4) {
+  positions = [
+    { x: 20, y: 30 }, { x: 80, y: 30 },
+    { x: 20, y: 80 }, { x: 80, y: 80 }
+  ];
+} else if (n === 3) {
+  positions = [
+    { x: 50, y: 30 },
+    { x: 20, y: 80 }, { x: 80, y: 80 }
+  ];
+} else {
+  console.warn("未知のチーム数:", n, league);
+  return; // 安全にスキップ
+}
+
 
     // --- チーム描画 ---
     league.teams.forEach((team, i) => {
